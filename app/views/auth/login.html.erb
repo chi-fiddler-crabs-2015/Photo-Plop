@@ -1,0 +1,22 @@
+<!-- has login form for user, renders errors -->
+<!-- is index of site for user that isn't signed in -->
+<!-- link to signup form for new user -->
+<!-- has blurb about what site is about -->
+<p>I am a blurb about what Photoplop is about.</p>
+
+<%= link_to "Create Account", new_user_registration_path %>
+
+<h1>THIS IS A SIGNIN FORM</h1>
+<%= form_for :user do |f| %>
+  <%= render "shared/errors" %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Log In" %>
+<% end %>
+<%= button_to('Login via Twitter', '/users/auth/twitter') %>
+<%= button_to('Login via Facebook', '/users/auth/facebook') %>
