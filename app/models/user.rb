@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
   has_many :albums, foreign_key: :creator_id
   has_many :collaborators_albums, foreign_key: :collaborator_id
-  has_many :images
+  has_many :images, foreign_key: :owner_id
 
   validates :email, :password_hash, presence: true
-  validates :email, :username, uniqueness: true
+  validates :email, :username, uniqueness: { case_sensitive: true }
 
   def password
     @password ||= BCrypt::Password.new(self.password_hash)

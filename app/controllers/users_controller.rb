@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     else
       @errors = @user.errors
       render :'new'
+    end
   end
 
   private
