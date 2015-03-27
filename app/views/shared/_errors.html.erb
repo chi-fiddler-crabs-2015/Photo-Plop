@@ -1,0 +1,6 @@
+<!-- shows @errors.full_messages.each as a partial -->
+<% if @errors %>
+  <% @errors.full_messages.each do |e| %>
+  <%= e %>
+  <% end %>
+<% end %>
