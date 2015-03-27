@@ -3,7 +3,10 @@ class AlbumsController < ApplicationController
 
   def index
     @owned_albums = current_user.albums
-    @contributed_albums = current_user.collaborators_albums.albums
+    @contributed_albums = []
+    current_user.collaborators_albums.each do |album|
+      @contributed_albums << album
+    end
   end
 
   def new
