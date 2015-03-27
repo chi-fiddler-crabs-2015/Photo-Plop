@@ -14,8 +14,13 @@ class Album < ActiveRecord::Base
 
   before_create :assign_vanity_url
 
+  private
+
   def assign_vanity_url
     self.vanity_url = (FFaker::Color.name + FFaker::Food.fruit + FFaker::Color.name + rand(10..99).to_s).strip.downcase
+  end
+
+  def self.on_change
   end
 
 end
