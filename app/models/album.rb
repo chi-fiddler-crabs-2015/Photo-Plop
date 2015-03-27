@@ -14,8 +14,21 @@ class Album < ActiveRecord::Base
 
   before_create :assign_vanity_url
 
+  private
+
   def assign_vanity_url
     self.vanity_url = (FFaker::Color.name + FFaker::Food.fruit + FFaker::Color.name + rand(10..99).to_s).strip.downcase
+  end
+
+  def self.on_change
+    Album.connection.execute "LISTEN albums"
+    loop do
+      Album.connection.raw_connection.wait_for_notify do |event, pid, album|
+        yield album
+      end
+    end
+  ensure
+    Album.connection.execute "UNLISTEN albums"
   end
 
 end
