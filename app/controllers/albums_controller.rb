@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  ActionController::Live
 
   def index
     @owned_albums = current_user.albums
@@ -21,6 +22,17 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find_by(id: params[:id])
+    response.headers['Content-Type'] = 'text/event-stream'
+    sse = SSE.new(response.stream)
+    begin
+      Album.on_change do |data|
+        sse.write(data)
+      end
+    rescue IOError
+      # Client Disconnected
+    ensure
+      sse.close
+    end
   end
 
   private
