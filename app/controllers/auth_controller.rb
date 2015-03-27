@@ -14,7 +14,7 @@ class AuthController < ApplicationController
   end
 
   def logout
-    session.clear
+    session[:user_id].clear
     redirect_to root_path
   end
 
