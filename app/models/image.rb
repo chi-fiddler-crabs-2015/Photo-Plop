@@ -1,4 +1,4 @@
-class Image < ActiveRecord::Base
+lass Image < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :album
 
