@@ -10,6 +10,7 @@ RSpec.describe Album, type: :model do
     it { should have_many(:collaborators_albums).dependent(:destroy) }
 
     it { should have_many(:collaborators).through(:collaborators_albums) }
+
   end
 
   describe "Validations" do
@@ -30,6 +31,12 @@ RSpec.describe Album, type: :model do
     it { should validate_length_of(:password).is_at_least(4) }
 
     it { should validate_length_of(:password).is_at_most(20) }
+
+  end
+
+  describe "Database" do
+
+     it { should have_db_index(:creator_id) }
 
   end
 end

@@ -21,4 +21,10 @@ RSpec.describe User, type: :model do
 
     it { should validate_uniqueness_of(:username) }
   end
+
+  describe "Database" do
+
+    it { should have_db_index(:username) }
+
+  end
 end
