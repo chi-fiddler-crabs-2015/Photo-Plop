@@ -9,12 +9,15 @@ class ImagesController < ApplicationController
     puts "params are: "
     puts params
 
-    @new_image = Album.find(params[:album_id]).images.new(image_params)
 
-    if params[:image_url].present?
-      cloudinary_hash = Cloudinary::Uploader.upload(params[:image_url])
-
-      @new_image.file_url = cloudinary_hash["url"]
+    # if params[:image_url].present?
+      puts params[:image][:image_url]
+      puts "*****************************************"
+      cloudinary_hash = Cloudinary::Uploader.upload(params[:image][:image_url])
+      puts cloudinary_hash
+      puts "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
+      # @new_image = Album.find(params[:album_id]).images.new(image_params)
+      # @new_image.file_url = cloudinary_hash["url"]
 
       # preloaded = Cloudinary::PreloadedFile.new(params[:image_url])
       # raise "Invalid upload signature" if !preloaded.valid?
@@ -26,14 +29,14 @@ class ImagesController < ApplicationController
 
       # puts "file_url from cloudinary is: "
       # puts @new_image.file_url
-    end
+    # end
 
-    if @new_image.save
-      render :back
-    else
-      @errors = @new_image.errors
-      render :'new'
-    end
+    # if @new_image.save
+    #   render :back
+    # else
+    #   @errors = @new_image.errors
+    #   render :'new'
+    # end
   end
 
   def show
