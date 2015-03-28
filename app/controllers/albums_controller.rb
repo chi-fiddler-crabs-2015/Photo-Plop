@@ -3,10 +3,14 @@ class AlbumsController < ApplicationController
 
   def index
     @owned_albums = current_user.albums
-    @contributed_albums = []
-    current_user.collaborators_albums.each do |album|
-      @contributed_albums << album
+
+    @albums_added_images_to = []
+    owned_images = Image.where(owner: current_user)
+    owned_images.each do |image|
+      @albums_added_images_to.push(image.album) unless @albums_added_images_to.include?(image.album)
     end
+
+    @favorites = current_user.favorites
   end
 
   def new
@@ -25,6 +29,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find_by(id: params[:id])
+    @favorite = current_user.favorites.find_by(album_id: @album)
   end
 
   def edit

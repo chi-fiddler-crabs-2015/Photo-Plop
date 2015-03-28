@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'auth#new'
+  root 'application#index'
 
   get '/login' => 'auth#new'
   post '/login' => 'auth#login'
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :collaborators_albums
+  resources :favorites
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
