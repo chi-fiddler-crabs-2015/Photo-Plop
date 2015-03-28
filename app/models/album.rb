@@ -16,7 +16,6 @@ class Album < ActiveRecord::Base
 
 
   def assign_vanity_url
-    puts "HEYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"
     self.vanity_url ||= (FFaker::Color.name + FFaker::Food.fruit + FFaker::Color.name + rand(10..99).to_s).strip.downcase
   end
 
