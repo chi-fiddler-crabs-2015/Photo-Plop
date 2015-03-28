@@ -27,6 +27,21 @@ class AlbumsController < ApplicationController
     @album = Album.find_by(id: params[:id])
   end
 
+  def edit
+    @album = Album.find_by(id: params[:id])
+  end
+
+  def update
+    album = Album.update_attributes(album_params)
+
+    if album.save
+      redirect_to album_path(album)
+    else
+      @errors = album.errors
+      render :edit
+    end
+  end
+
   private
 
   def album_params
