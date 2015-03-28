@@ -9,7 +9,6 @@ class AlbumsController < ApplicationController
     owned_images.each do |image|
       @albums_added_images_to.push(image.album) unless @albums_added_images_to.include?(image.album)
     end
-
   end
 
   def new
@@ -28,6 +27,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find_by(id: params[:id])
+    @favorite = current_user.favorites.find_by(album_id: @album)
   end
 
   def edit

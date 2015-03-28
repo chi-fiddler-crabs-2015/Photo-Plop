@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :albums, foreign_key: :creator_id
   has_many :collaborators_albums, foreign_key: :collaborator_id
   has_many :images, foreign_key: :owner_id
+  has_many :favorites, :dependent => :destroy
 
   validates :email, :password_hash, presence: true
   validates :email, :username, uniqueness: { case_sensitive: true }

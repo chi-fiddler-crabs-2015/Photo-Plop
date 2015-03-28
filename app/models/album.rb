@@ -5,6 +5,7 @@ class Album < ActiveRecord::Base
   has_many :images, :dependent => :destroy
   has_many :collaborators_albums, :dependent => :destroy
   has_many :collaborators, through: :collaborators_albums
+  has_many :favorites, :dependent => :destroy
 
   validates :title, :creator, :permissions, presence: true
   validates :vanity_url, uniqueness: true
