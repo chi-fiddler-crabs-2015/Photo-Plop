@@ -6,7 +6,7 @@
 
 <%= form_for :album, url: albums_path do |f| %>
   <%= render "shared/errors" %>
-  <%= r.label :title %>
+  <%= f.label :title %>
   <%= f.text_field :title, :required => true %>
 
   <%= f.label :description %>
