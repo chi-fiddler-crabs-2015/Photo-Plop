@@ -6,6 +6,7 @@
 <!-- can click image preview to see popup for image -->
 
 <h1><%= @album.title %></h1>
+<%= link_to "Upload New Image", new_album_image_path(@album.id) %>
 
 <% @album.images.each do |image| %>
   <%= cl_image_tag(image.location) %>

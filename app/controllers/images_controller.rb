@@ -24,7 +24,7 @@ class ImagesController < ApplicationController
     # end
 
     if @new_image.save
-      redirect_to :back
+      redirect_to album_path(@new_image.album.id)
     else
       @errors = @new_image.errors
       render :'new'
