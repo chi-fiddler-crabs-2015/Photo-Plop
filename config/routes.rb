@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'application#index'
 
-  get 'login' => 'auth#new'
-  post 'login' => 'auth#login'
-  get 'logout' => 'auth#logout'
+  get '/login' => 'auth#new'
+  post '/login' => 'auth#login'
+  get '/logout' => 'auth#logout'
 
   resources :users
   resources :albums do

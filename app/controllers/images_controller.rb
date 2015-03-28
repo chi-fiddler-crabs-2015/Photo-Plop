@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  # include ActionController::Live
 
   def new
     @image = Image.new
