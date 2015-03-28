@@ -15,7 +15,8 @@
 <% @album.images.each do |image| %>
   <%= cl_image_tag(image.location) %>
   <% if image.owner?(session[:user_id]) %>
-    <%= button_to "DELETE", image, method: :delete %>
+    <%= button_to "DELETE", {:controller => :images,
+      :action => 'destroy', album_id: @album.id, :id => image.id }, :method => :delete %>
   <% end %>
   <br>
 <% end %>
