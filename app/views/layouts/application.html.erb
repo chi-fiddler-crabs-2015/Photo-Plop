@@ -10,7 +10,12 @@
 <!-- navbar will go here, has buttons for:
       + (album or photo)
       /// (my albums -> list of all albums) (contributed albums -> list of albums) (logout) -->
-
+<% if current_user %>
+  <a href="/logout">Log Out</a>
+<% else %>
+  <a href="<%= new_user_path %>">Create an Account</a>
+  <a href="/login">Log In</a>
+<% end %>
 <%= yield %>
 
 </body>
