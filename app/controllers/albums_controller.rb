@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  include ActionController::Live
+  # include ActionController::Live
 
   def index
     @owned_albums = current_user.albums
@@ -14,8 +14,8 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    new_album = current_user.albums.create(album_params)
-    if new_album.valid?
+    new_album = current_user.albums.new(album_params)
+    if new_album.save
       redirect_to album_path(new_album)
     else
       @errors = new_album.errors
@@ -25,19 +25,6 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find_by(id: params[:id])
-    render :show
-    response.headers['Content-Type'] = 'text/event-stream'
-    sse = SSE.new(response.stream)
-    begin
-      Album.on_change do |data|
-        puts "HEY THIS WAS CALLED"
-        sse.write(data)
-      end
-    rescue IOError
-      # Client Disconnected
-    ensure
-      sse.close
-    end
   end
 
   private
@@ -47,3 +34,15 @@ class AlbumsController < ApplicationController
   end
 
 end
+
+# sse = SSE.new(response.stream)
+# begin
+#   Album.on_change do |data|
+#     puts "HEY THIS WAS CALLED"
+#     sse.write(data)
+#   end
+# rescue IOError
+#   # Client Disconnected
+# ensure
+#   sse.close
+# end
