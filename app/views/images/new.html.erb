@@ -5,7 +5,7 @@
 
 <%= cloudinary_js_config %>
 
-<%= form_for :image, url: image_path do |f| %>
+<%= form_for :image, url: album_images_path do |f| %>
   <%= render "shared/errors" %>
   <%= f.label :file %>
   <%= f.hidden_field(:file_cache) %>
