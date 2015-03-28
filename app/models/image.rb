@@ -4,8 +4,8 @@ class Image < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :album
 
-  def deletable?(user_id)
-    if user_id == ( self.owner.id || self.album.creator.id )
+  def owner?(user_id)
+    if self.owner.id == user_id
       true
     else
       false

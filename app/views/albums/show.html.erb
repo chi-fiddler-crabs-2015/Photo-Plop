@@ -10,7 +10,12 @@
 <% if @album.owner?(session[:user_id]) %>
   <%= link_to "Edit Album", edit_album_path(@album.id) %>
 <% end %>
+<br>
 
 <% @album.images.each do |image| %>
   <%= cl_image_tag(image.location) %>
+  <% if image.owner?(session[:user_id]) %>
+    <%= button_to "DELETE", image, method: :delete %>
+  <% end %>
+  <br>
 <% end %>
