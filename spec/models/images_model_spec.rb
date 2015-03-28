@@ -11,6 +11,8 @@ RSpec.describe Image, type: :model do
 
   describe "Validations" do
 
+    subject { FactoryGirl.build(:image, owner: User.create(id: 293847, email: "fake@fakerst.com", username: "alskdfjlkj")) }
+
     it { should validate_presence_of(:url) }
 
   end
