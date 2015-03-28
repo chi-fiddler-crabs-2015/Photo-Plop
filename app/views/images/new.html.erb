@@ -7,9 +7,8 @@
 
 <%= form_for :image, url: album_images_path do |f| %>
   <%= render "shared/errors" %>
-  <%= f.label :file %>
-  <%= f.hidden_field(:file_cache) %>
-  <%= f.file_field(:file) %>
+
+  <%= cl_image_upload_tag(:image_url) %>
 
   <%= f.label :caption %>
   <%= f.text_field :caption %>

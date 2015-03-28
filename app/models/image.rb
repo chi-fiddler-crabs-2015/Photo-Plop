@@ -13,9 +13,12 @@ class Image < ActiveRecord::Base
     Album.connection.execute "NOTIFY albums, 'data'"
   end
 
-  # def url=(plaintext)
+  # def file_url=(plaintext)
+  #   puts "plaintext is: "
+  #   puts plaintext
   #   @cloudinary_url["url"] = Cloudinary::Uploader.upload(plaintext, :use_filename => true)
-  #   self.url = @cloudinary_url
+  #   self.file_url = @cloudinary_url
+  #   puts self.file_url
   # end
 
 

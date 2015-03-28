@@ -7,3 +7,6 @@
 
 <h1><%= @album.title %></h1>
 
+<% @album.images.each do |image| %>
+  <%= cl_image_tag(image.file_url) %>
+<% end %>
