@@ -1,5 +1,7 @@
 class Album < ActiveRecord::Base
-  belongs_to :creator, class_name: 'User'
+  before_validation :assign_vanity_url
+
+  belongs_to :creator, class_name: 'User', autosave: false
   has_many :images, :dependent => :destroy
   has_many :collaborators_albums, :dependent => :destroy
   has_many :collaborators, through: :collaborators_albums
@@ -9,13 +11,32 @@ class Album < ActiveRecord::Base
 
   validates_length_of :title, :maximum => 75
 
-  validates_length_of :password, :minimum => 4
+  # validates_length_of :password, :minimum => 4
   validates_length_of :password, :maximum => 20
 
-  before_create :assign_vanity_url
 
   def assign_vanity_url
-    self.vanity_url = (FFaker::Color.name + FFaker::Food.fruit + FFaker::Color.name + rand(10..99).to_s).strip.downcase
+    self.vanity_url ||= (FFaker::Color.name + FFaker::Food.fruit + FFaker::Color.name + rand(10..99).to_s).strip.downcase
   end
+
+  def owner?(user_id)
+    if self.creator.id == user_id
+      true
+    else
+      false
+    end
+  end
+
+
+  # def self.on_change
+  #   Album.connection.execute "LISTEN albums"
+  #   loop do
+  #     Album.connection.raw_connection.wait_for_notify do |event, pid, album|
+  #       yield album
+  #     end
+  #   end
+  # ensure
+  #   Album.connection.execute "UNLISTEN albums"
+  # end
 
 end

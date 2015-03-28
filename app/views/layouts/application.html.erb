@@ -2,15 +2,21 @@
 <html>
 <head>
   <title>PhotoPlop</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <!-- navbar will go here, has buttons for:
       + (album or photo)
       /// (my albums -> list of all albums) (contributed albums -> list of albums) (logout) -->
-
+<% if current_user %>
+  <a href="/logout">Log Out</a>
+<% else %>
+  <a href="<%= new_user_path %>">Create an Account</a>
+  <a href="/login">Log In</a>
+<% end %>
+<%= link_to "Home", albums_path %>
 <%= yield %>
 
 </body>

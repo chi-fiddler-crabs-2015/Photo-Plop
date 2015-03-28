@@ -1,10 +1,4 @@
-<!-- this is a partial that pops up over the list of albums -->
-<!-- field for title, option to add images, radio buttons for permission options -->
-<!-- can X this out to cancel creating album -->
-
-<h2>Create an Album</h2>
-
-<%= form_for :album, url: albums_path do |f| %>
+<%= form_for :album, method: :put, url: album_path(params[:id]) do |f| %>
   <%= render "shared/errors" %>
   <%= f.label :title %>
   <%= f.text_field :title, :required => true %>
@@ -30,5 +24,8 @@
   <%= f.label :permissions, "Only specified accounts can see album and contribute" %>
   <%= f.radio_button :permissions, "6" %>
 
-  <%= f.submit "Create" %>
+  <%= f.submit "Update" %>
 <% end %>
+
+<%= button_to "DELETE", @album, method: :delete %>
+
