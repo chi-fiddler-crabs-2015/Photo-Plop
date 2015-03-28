@@ -27,5 +27,11 @@
   <%= f.submit "Update" %>
 <% end %>
 
-<%= button_to "DELETE", @album, method: :delete %>
+<% @album.images.each do |image| %>
+  <%= cl_image_tag(image.location) %>
+  <%= button_to "DELETE", image, method: :delete %>
+  <br>
+<% end %>
+
+<%= button_to "DELETE ALBUM", @album, method: :delete %>
 

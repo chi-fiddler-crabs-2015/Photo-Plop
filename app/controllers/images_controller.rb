@@ -23,6 +23,11 @@ class ImagesController < ApplicationController
   def show
   end
 
+  def destroy
+    Image.find_by(id: params[:id]).destroy
+    redirect_to albums_path
+  end
+
   private
 
   def image_params
