@@ -21,3 +21,10 @@
   <% end %>
 </ul>
 
+<h2>Albums I've Favorited</h2>
+<ul>
+  <% @favorites.each do |fav| %>
+  <li><%= link_to(fav.album.title, album_path(fav.album)) %></li>
+  <% end %>
+</ul>
+

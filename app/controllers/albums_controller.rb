@@ -9,6 +9,8 @@ class AlbumsController < ApplicationController
     owned_images.each do |image|
       @albums_added_images_to.push(image.album) unless @albums_added_images_to.include?(image.album)
     end
+
+    @favorites = current_user.favorites
   end
 
   def new
