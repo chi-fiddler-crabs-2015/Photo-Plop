@@ -35,14 +35,15 @@ class AlbumsController < ApplicationController
 
 end
 
-# sse = SSE.new(response.stream)
-# begin
-#   Album.on_change do |data|
-#     puts "HEY THIS WAS CALLED"
-#     sse.write(data)
-#   end
-# rescue IOError
-#   # Client Disconnected
-# ensure
-#   sse.close
-# end
+#     response.headers['Content-Type'] = 'text/event-stream'
+#     sse = SSE.new(response.stream)
+#     begin
+#       Album.on_change do |data|
+#         puts "HEY THIS WAS CALLED"
+#         sse.write(data)
+#       end
+#     rescue IOError
+#       # Client Disconnected
+#     ensure
+#       sse.close
+#     end

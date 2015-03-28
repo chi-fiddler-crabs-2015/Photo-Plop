@@ -1,6 +1,8 @@
 <!-- shows @errors.full_messages.each as a partial -->
 <% if @errors %>
+<ul>
   <% @errors.full_messages.each do |e| %>
-  <%= e %>
+    <li><%= e %></li>
   <% end %>
+</ul>
 <% end %>

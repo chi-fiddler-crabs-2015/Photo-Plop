@@ -7,6 +7,7 @@
 <!-- need to change album.title to album.images.first -->
 
 <h2>My Albums</h2>
+<%= link_to('Create a New Album', new_album_path) %>
 <ul>
   <% @owned_albums.each do |album| %>
   <li><%= link_to(album.title, album_path(album)) %></li>
@@ -20,4 +21,3 @@
   <% end %>
 </ul>
 
-<%= link_to('Create a New Album', new_album_path) %>
