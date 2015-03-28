@@ -9,14 +9,6 @@ RSpec.describe Image, type: :model do
 
   end
 
-  describe "Validations" do
-
-    subject { FactoryGirl.build(:image, owner: User.create(id: 293847, email: "fake@fakerst.com", username: "alskdfjlkj")) }
-
-    it { should validate_presence_of(:url) }
-
-  end
-
   describe "Database" do
 
     it { should have_db_index(:album_id) }
