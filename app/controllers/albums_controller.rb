@@ -32,7 +32,8 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    album = Album.update_attributes(album_params)
+    album = Album.find_by(id: params[:id])
+    album.update_attributes(album_params)
 
     if album.save
       redirect_to album_path(album)
@@ -40,6 +41,11 @@ class AlbumsController < ApplicationController
       @errors = album.errors
       render :edit
     end
+  end
+
+  def destroy
+    Album.find_by(id: params[:id]).destroy
+    redirect_to albums_path
   end
 
   private
