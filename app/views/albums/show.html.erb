@@ -6,3 +6,7 @@
 <!-- can click image preview to see popup for image -->
 
 <h1><%= @album.title %></h1>
+
+<% @album.images.each do |image| %>
+  <%= cl_image_tag(image.location) %>
+<% end %>
