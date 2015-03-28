@@ -7,8 +7,8 @@ class Image < ActiveRecord::Base
 
   # we get url from uploading the image after the instance of the model is created
 
-  def notify_album
-    Album.connection.execute "NOTIFY albums, 'data'"
-  end
+  # def notify_album
+  #   Album.connection.execute "NOTIFY albums, 'data'"
+  # end
 
 end
