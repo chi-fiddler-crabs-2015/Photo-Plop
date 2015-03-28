@@ -7,6 +7,9 @@
 
 <h1><%= @album.title %></h1>
 <%= link_to "Upload New Image", new_album_image_path(@album.id) %>
+<% if @album.owner?(session[:user_id]) %>
+  <%= link_to "Edit Album", edit_album_path(@album.id) %>
+<% end %>
 
 <% @album.images.each do |image| %>
   <%= cl_image_tag(image.location) %>
