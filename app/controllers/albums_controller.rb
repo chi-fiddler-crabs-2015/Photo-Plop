@@ -12,12 +12,13 @@ class AlbumsController < ApplicationController
 
     @fav_albums = []
     current_user.favorites.each do |fav|
-      @fav_albums << fav.album
+      @fav_albums << fav.album if fav.favorite
     end
   end
 
   def new
     @album = Album.new
+    render partial: 'new'
   end
 
   def create
