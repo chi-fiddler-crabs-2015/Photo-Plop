@@ -9,4 +9,5 @@ before_script:
   - bundle exec rake db:create RAILS_ENV=test
   - bundle exec rake db:migrate
   - bundle exec rake db:test:prepare
-
+deploy:
+  - secret_key_base = b07414e816d94f88ace011458150af7ec9d4c8276a90e8d803ba149ce5a95622ae54721c2d6778d0ae96824abdc0aaec51ecd800d95a28e1ee517a957bd186a8
