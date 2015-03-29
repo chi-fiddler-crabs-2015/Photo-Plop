@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :collaborators_albums
   resources :favorites
 
+  get'/:vanity_url' => 'albums#vanity'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -4,12 +4,10 @@
 <!-- has blurb about what site is about -->
 <p>I am a blurb about what Photoplop is about.</p>
 
-<%= link_to "Create Account", new_user_path %>
-
-<h1>THIS IS A SIGNIN FORM</h1>
 <% if flash[:alert] %>
-  <p class="welcome"> <%=flash[:alert] %></p>
+  <h3 class="alert"> <%=flash[:alert] %></h3>
 <% end %>
+<h1>LOGIN</h1>
 <%= form_for :user do |f| %>
 
   <%= f.label :username %>
@@ -21,3 +19,4 @@
   <%= f.submit "Log In" %>
 <% end %>
 
+Not a user yet? <%= link_to "Create Account", new_user_path %>
