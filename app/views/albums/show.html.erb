@@ -7,13 +7,7 @@
 
 <h1><%= @album.title %></h1>
 <% if current_user %>
-  <% if @favorite %>
-    <p>You have marked this as a favorite already.</p>
-    <%= button_to "Delete Favorite", {:controller => :favorites, action: "destroy", id: @favorite.id}, method: :delete %>
-  <% else %>
-    <p>You should favorite this album!</p>
-    <%= button_to("Mark as Favorite", favorites_path, params: {user: current_user, album: @album}) %>
-  <% end %>
+  <div id="favorite-button-container"><%= render partial: "favorites/button"%></div>
 <% end %>
 <div id="upload-photo-box">
   <%= link_to "Upload New Image", new_album_image_path(@album.id), remote: true, id: "upload_button" %>

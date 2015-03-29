@@ -1,0 +1,5 @@
+  <% if @favorite.favorite %>
+    <%= button_to("Remove Favorite", favorites_path, params: {user: current_user, album: @album}) %>
+  <% else %>
+    <%= button_to("Mark as Favorite", favorites_path, params: {user: current_user, album: @album}) %>
+  <% end %>
