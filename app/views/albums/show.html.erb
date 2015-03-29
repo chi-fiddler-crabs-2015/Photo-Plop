@@ -23,7 +23,7 @@
 <br>
 
 <% @album.images.each do |image| %>
-  <%= cl_image_tag(image.location) %>
+  <%= link_to cl_image_tag(image.location, :width => 100, :height=> 100, :crop => :thumb, :gravity => :faces), album_image_path(@album.id, image.id) %>
   <% if image.owner?(session[:user_id]) %>
     <%= button_to "DELETE", {:controller => :images,
       :action => 'destroy', album_id: @album.id, :id => image.id }, :method => :delete %>
