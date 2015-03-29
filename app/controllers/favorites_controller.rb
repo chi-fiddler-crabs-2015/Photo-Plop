@@ -1,13 +1,12 @@
 class FavoritesController < ApplicationController
 
   def create
-    fav = Favorite.find_or_create_by(user_id: params[:user], album_id: params[:album])
-    fav.change_status
-    fav.save
-    puts fav.favorite
-    puts "*************************"
-    redirect_to :back
-    # redirect_to albums_path(params[:album])
+
+    @album = Album.find_by(id: params[:album])
+    @favorite = Favorite.find_or_create_by(user_id: params[:user], album_id: params[:album])
+    @favorite.change_status
+    @favorite.save
+    render partial: 'button'
   end
 
   # def destroy
