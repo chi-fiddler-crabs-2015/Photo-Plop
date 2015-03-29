@@ -10,7 +10,10 @@ class AlbumsController < ApplicationController
       @albums_added_images_to.push(image.album) unless @albums_added_images_to.include?(image.album)
     end
 
-    @favorites = current_user.favorites
+    @fav_albums = []
+    current_user.favorites.each do |fav|
+      @fav_albums << fav.album
+    end
   end
 
   def new
