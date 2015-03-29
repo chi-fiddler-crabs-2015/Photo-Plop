@@ -3,6 +3,7 @@ class ImagesController < ApplicationController
 
   def new
     @image = Image.new
+    render partial: 'new'
   end
 
   def create
@@ -22,7 +23,6 @@ class ImagesController < ApplicationController
 
   def show
     @image = Image.find(params[:id])
-    render :'show'
   end
 
   def destroy

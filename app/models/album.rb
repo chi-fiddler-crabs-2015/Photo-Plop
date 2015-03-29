@@ -7,7 +7,7 @@ class Album < ActiveRecord::Base
   has_many :collaborators, through: :collaborators_albums
   has_many :favorites, :dependent => :destroy
 
-  validates :title, :creator, :permissions, presence: true
+  validates :title, :creator, presence: true
   validates :vanity_url, uniqueness: true
 
   validates_length_of :title, :maximum => 75
