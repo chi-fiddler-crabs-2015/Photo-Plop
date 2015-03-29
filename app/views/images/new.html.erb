@@ -2,3 +2,19 @@
 <!-- can pick img on device or upload from url -->
 <!-- can select multiple images -->
 <!-- can X out of this partial to cancel uploading images to this album -->
+
+<%= cloudinary_js_config %>
+
+<%= form_for :image, url: album_images_path do |f| %>
+  <%= render "shared/errors" %>
+
+  <%= f.file_field(:image_url) %>
+  -or-
+  <label for="image_url">Image Url</label>
+  <input type="text" name="image[image_url]" id="image_url">
+
+  <%= f.label :caption %>
+  <%= f.text_field :caption %>
+
+  <%= f.submit "Upload" %>
+<% end %>

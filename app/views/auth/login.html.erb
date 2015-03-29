@@ -1,0 +1,22 @@
+<!-- has login form for user, renders errors -->
+<!-- is index of site for user that isn't signed in -->
+<!-- link to signup form for new user -->
+<!-- has blurb about what site is about -->
+<p>I am a blurb about what Photoplop is about.</p>
+
+<% if flash[:alert] %>
+  <h3 class="alert"> <%=flash[:alert] %></h3>
+<% end %>
+<h1>LOGIN</h1>
+<%= form_for :user do |f| %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Log In" %>
+<% end %>
+
+Not a user yet? <%= link_to "Create Account", new_user_path %>

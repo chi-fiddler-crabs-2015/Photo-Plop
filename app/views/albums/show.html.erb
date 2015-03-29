@@ -4,3 +4,30 @@
 <!-- can rename or delete album -->
 <!-- can share album, which gives me copy url, facebook, twitter and instagram buttons -->
 <!-- can click image preview to see popup for image -->
+
+<h1><%= @album.title %></h1>
+<% if current_user %>
+  <% if @favorite %>
+    <p>You have marked this as a favorite already.</p>
+    <%= button_to "Delete Favorite", {:controller => :favorites, action: "destroy", id: @favorite.id}, method: :delete %>
+  <% else %>
+    <p>You should favorite this album!</p>
+    <%= button_to("Mark as Favorite", favorites_path, params: {user: current_user, album: @album}) %>
+  <% end %>
+<% end %>
+
+<%= link_to "Upload New Image", new_album_image_path(@album.id) %>
+<% if @album.owner?(current_user) %>
+  <p> Your album's URL is: http://www.photoplop.com/<%= @album.vanity_url %> | SHARE THIS ALBUM |
+  <%= link_to "Edit Album", edit_album_path(@album.id) %>
+<% end %>
+<br>
+
+<% @album.images.each do |image| %>
+  <%= link_to cl_image_tag(image.location, :width => 100, :height=> 100, :crop => :thumb, :gravity => :faces), album_image_path(@album.id, image.id) %>
+  <% if image.owner?(current_user) %>
+    <%= button_to "DELETE", {:controller => :images,
+      :action => 'destroy', album_id: @album.id, :id => image.id }, :method => :delete %>
+  <% end %>
+  <br>
+<% end %>

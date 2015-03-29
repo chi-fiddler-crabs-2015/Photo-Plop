@@ -3,7 +3,7 @@ class CreateAlbums < ActiveRecord::Migration
     create_table :albums do |t|
       t.string :title, null: false
       t.text :description
-      t.string :vanity_url, unique: true, null: false
+      t.string :vanity_url
       t.belongs_to :creator, index: true
       t.string :password
       t.integer :permissions, null: false, default: 1
