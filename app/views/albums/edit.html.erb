@@ -1,6 +1,5 @@
 <%= form_for :album, method: :put, url: album_path(params[:id]) do |f| %>
   <%= render "shared/errors" %>
-  <%= render "shared/errors" %>
   <%= f.label :title %>
   <%= f.text_field :title, :required => true %>
 
