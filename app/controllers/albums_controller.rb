@@ -18,7 +18,7 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
-    render partial: 'new'
+    # render partial: 'new'
   end
 
   def create
