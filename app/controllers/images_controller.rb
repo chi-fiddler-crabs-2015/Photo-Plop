@@ -23,7 +23,6 @@ class ImagesController < ApplicationController
 
   def show
     @image = Image.find(params[:id])
-    render :'show'
   end
 
   def destroy
