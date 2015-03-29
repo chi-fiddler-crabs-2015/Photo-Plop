@@ -17,6 +17,7 @@
 </div>
 <% if @album.owner?(current_user) %>
 <p> Your album's URL is: http://www.photoplop.com/<%= @album.vanity_url %> | SHARE THIS ALBUM |
+  <span><input type="text" value="http://www.photoplop.com/<%= @album.vanity_url %>" disabled></input></span>
   <%= link_to "Edit Album", edit_album_path(@album.id) %>
   <% end %>
   <br>
