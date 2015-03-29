@@ -45,6 +45,9 @@ class AlbumsController < ApplicationController
     if current_user
       @favorite = current_user.favorites.find_by(album_id: @album)
     end
+    if current_user.authenticate
+    else
+    end
   end
 
   def edit

@@ -27,6 +27,18 @@ class Album < ActiveRecord::Base
     end
   end
 
+  def authenticate(user, password='')
+    album_user = AlbumsUser.find_by(user: user, album: self)
+    if album_user.access
+      return true
+    elsif ( self.password == '' || self.password == password )
+      album_user.update_attributes(access: true)
+      return true
+    else
+      return false
+    end
+  end
+
 
   # def self.on_change
   #   Album.connection.execute "LISTEN albums"
