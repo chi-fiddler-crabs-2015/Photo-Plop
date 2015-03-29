@@ -12,23 +12,7 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
 
-  <%= f.label :permissions, "Anyone with link can see and contribute" %>
-  <%= f.radio_button :permissions, "1" %>
 
-  <%= f.label :permissions, "Anyone with link can see, password required to contribute" %>
-  <%= f.radio_button :permissions, "2" %>
-
-  <%= f.label :permissions, "Anyone with link can see, only specified accounts can contribute" %>
-  <%= f.radio_button :permissions, "3" %>
-
-  <%= f.label :permissions, "Password required to see album and contribute" %>
-  <%= f.radio_button :permissions, "4" %>
-
-  <%= f.label :permissions, "Password required to see album, only specified accounts can contribute" %>
-  <%= f.radio_button :permissions, "5" %>
-
-  <%= f.label :permissions, "Only specified accounts can see album and contribute" %>
-  <%= f.radio_button :permissions, "6" %>
 
   <%= f.submit "Create" %>
 <% end %>

@@ -2,12 +2,18 @@ class ImagesController < ApplicationController
   # include ActionController::Live
 
   def new
+    if self.album.write_authenticate(current_user)
+      render :new
+    else
+      render :prompt_for_password
+    end
     @image = Image.new
+    render partial: 'new'
   end
 
   def create
 
-    cloudinary_hash = Cloudinary::Uploader.upload(params[:image][:image_url])
+    cloudinary_hash = Cloudinary::Uploader.upload(params[:image][:image_url] || params[:image][:direct_url])
 
     @new_image = Album.find(params[:album_id]).images.new(caption: params[:image][:caption], owner: current_user || default_user)
     @new_image.location = cloudinary_hash["url"]
@@ -22,7 +28,6 @@ class ImagesController < ApplicationController
 
   def show
     @image = Image.find(params[:id])
-    render :'show'
   end
 
   def destroy
@@ -34,7 +39,7 @@ class ImagesController < ApplicationController
   private
 
   def image_params
-    params.require(:image).permit(:caption, :image_url)
+    params.require(:image).permit(:caption )
   end
 
 end
