@@ -12,17 +12,4 @@ $(document).ready(function() {
     })
   })
 
-  $(document).on('submit', '#new-album-form', function() {
-    form = $(this)
-    console.log(form.attr('action'))
-    console.log(form.attr('method'))
-    $.ajax({
-      url: form.attr('action'),
-      method: form.attr('method'),
-      success: function(response) {
-        console.log(response)
-      }
-    })
-
-  })
 })

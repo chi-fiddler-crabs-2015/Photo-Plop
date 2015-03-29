@@ -4,7 +4,7 @@
 
 <h2>Create an Album</h2>
 
-<%= form_for :album, url: albums_path, html: {id: 'new-album-form'}, remote: true do |f| %>
+<%= form_for :album, url: albums_path, html: {id: 'new-album-form'} do |f| %>
   <%= render "shared/errors" %>
   <%= f.label :title %>
   <%= f.text_field :title, :required => true %>
