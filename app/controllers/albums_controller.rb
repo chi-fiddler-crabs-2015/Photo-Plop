@@ -7,7 +7,7 @@ class AlbumsController < ApplicationController
     @albums_added_images_to = []
     owned_images = Image.where(owner: current_user)
     owned_images.each do |image|
-      @albums_added_images_to.push(image.album) unless @albums_added_images_to.include?(image.album)
+      @albums_added_images_to.push(image.album) unless  ( @albums_added_images_to.include?(image.album) || @owned_albums.include?(image.album) )
     end
 
     @fav_albums = []
