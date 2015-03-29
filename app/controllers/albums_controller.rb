@@ -7,7 +7,7 @@ class AlbumsController < ApplicationController
     @albums_added_images_to = []
     owned_images = Image.where(owner: current_user)
     owned_images.each do |image|
-      @albums_added_images_to.push(image.album) unless @albums_added_images_to.include?(image.album)
+      @albums_added_images_to.push(image.album) unless  ( @albums_added_images_to.include?(image.album) || @owned_albums.include?(image.album) )
     end
 
     @fav_albums = []
@@ -45,6 +45,11 @@ class AlbumsController < ApplicationController
     if current_user
       @favorite = current_user.favorites.find_by(album_id: @album)
     end
+    if @album.read_authenticate(current_user)
+      render :show
+    else
+      render :prompt_for_password
+    end
   end
 
   def edit
@@ -71,7 +76,7 @@ class AlbumsController < ApplicationController
   private
 
   def album_params
-    params.require(:album).permit(:title, :description, :vanity_url, :password, :permissions)
+    params.require(:album).permit(:title, :description, :vanity_url, :password, :read_privilege, :write_privilege)
   end
 
 end
