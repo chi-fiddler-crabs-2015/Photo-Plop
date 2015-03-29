@@ -24,8 +24,9 @@ class ImagesController < ApplicationController
   end
 
   def destroy
+    puts params
     Image.find_by(id: params[:id]).destroy
-    redirect_to albums_path
+    redirect_to album_path(params[:album_id])
   end
 
   private
