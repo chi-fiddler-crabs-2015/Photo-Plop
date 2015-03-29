@@ -14,17 +14,44 @@
   </head>
 
   <body>
-    <nav>
-      <%= link_to "Home", root_path %> |
-      <% if current_user %>
-        <a href="/logout">Log Out</a>
-      <% else %>
-        <a href="<%= new_user_path %>">Create an Account</a>
-        <a href="/login">Log In</a>
-      <% end %>
+
+
+
+<div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+    <nav class="tab-bar">
+      <section class="left tab-bar-section">
+        <h1 class="title">photoplop</h1>
+      </section>
+
+      <section class="right-small">
+        <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+      </section>
     </nav>
 
-    <%= yield %>
+
+    <aside class="right-off-canvas-menu">
+      <ul class="off-canvas-list">
+      <% if current_user %>
+        <li><%= link_to "Logout", logout_path %></li>
+
+      <% else %>
+        <li><%= link_to "Sign Up", new_user_path %></li>
+        <li><%= link_to "Log In", login_path %></li>
+      <% end %>
+      </ul>
+    </aside>
+
+    <section class="main-section">
+      <%= yield %>
+    </section>
+
+  <a class="exit-off-canvas"></a>
+
+  </div>
+</div>
+
+
 
   </body>
 </html>
