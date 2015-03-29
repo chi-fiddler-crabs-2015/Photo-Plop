@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
 
+  def default_user
+    @_default_user ||= User.find_by(username: "Guest") if !session[:user_id]
+  end
 
-  helper_method :current_user
+
+  helper_method :current_user, :default_user
 end
