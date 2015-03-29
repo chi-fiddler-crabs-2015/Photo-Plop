@@ -27,6 +27,16 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def vanity
+    @album = Album.find_by(vanity_url: params[:vanity_url])
+    if @album
+      redirect_to album_path(@album)
+    else
+      flash[:alert] = "HMM.. this album isn't real..."
+      redirect_to root_path
+    end
+  end
+
   def show
     @album = Album.find_by(id: params[:id])
     if current_user
