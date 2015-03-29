@@ -4,8 +4,8 @@ class Image < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :album
 
-  def owner?(user_id)
-    if self.owner.id == user_id
+  def owner?(user)
+    if self.owner == user
       true
     else
       false

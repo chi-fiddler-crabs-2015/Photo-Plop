@@ -7,7 +7,7 @@ class ImagesController < ApplicationController
     if Album.find_by(id: params[:album_id]).write_authenticate(current_user)
       render partial: 'new'
     else
-      render :prompt_for_password
+      render partial: 'prompt_for_password'
     end
 
 
