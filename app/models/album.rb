@@ -19,8 +19,8 @@ class Album < ActiveRecord::Base
     self.vanity_url ||= (FFaker::Color.name + FFaker::Food.fruit + FFaker::Color.name + rand(10..99).to_s).strip.downcase
   end
 
-  def owner?(user_id)
-    if self.creator.id == user_id
+  def owner?(user)
+    if self.creator.id == user.id
       true
     else
       false
