@@ -20,7 +20,7 @@ class Album < ActiveRecord::Base
   end
 
   def owner?(user)
-    if self.creator.id == user.id
+    if self.creator == user
       true
     else
       false
