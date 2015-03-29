@@ -6,9 +6,8 @@ class ImagesController < ApplicationController
   end
 
   def create
-
-    cloudinary_hash = Cloudinary::Uploader.upload(params[:image][:image_url])
-
+    cloudinary_hash = Cloudinary::Uploader.upload(params[:image][:image_url] || params[:image][:direct_url])
+    puts cloudinary_hash
     @new_image = Album.find(params[:album_id]).images.new(caption: params[:image][:caption], owner: current_user || default_user)
     @new_image.location = cloudinary_hash["url"]
 
@@ -34,7 +33,7 @@ class ImagesController < ApplicationController
   private
 
   def image_params
-    params.require(:image).permit(:caption, :image_url)
+    params.require(:image).permit(:caption )
   end
 
 end
