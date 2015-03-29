@@ -9,7 +9,7 @@ class ImagesController < ApplicationController
 
     cloudinary_hash = Cloudinary::Uploader.upload(params[:image][:image_url])
 
-    @new_image = Album.find(params[:album_id]).images.new(caption: params[:image][:caption], owner: current_user)
+    @new_image = Album.find(params[:album_id]).images.new(caption: params[:image][:caption], owner: current_user || default_user)
     @new_image.location = cloudinary_hash["url"]
 
     if @new_image.save
@@ -26,8 +26,9 @@ class ImagesController < ApplicationController
   end
 
   def destroy
+    puts params
     Image.find_by(id: params[:id]).destroy
-    redirect_to albums_path
+    redirect_to album_path(params[:album_id])
   end
 
   private
