@@ -2,13 +2,15 @@ class ImagesController < ApplicationController
   # include ActionController::Live
 
   def new
-    if self.album.write_authenticate(current_user)
-      render :new
+    @image = Image.new
+
+    if Album.find_by(id: params[:album_id]).write_authenticate(current_user)
+      render partial: 'new'
     else
       render :prompt_for_password
     end
-    @image = Image.new
-    render partial: 'new'
+
+
   end
 
   def create
