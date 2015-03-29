@@ -29,7 +29,9 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find_by(id: params[:id])
-    @favorite = current_user.favorites.find_by(album_id: @album)
+    if current_user
+      @favorite = current_user.favorites.find_by(album_id: @album)
+    end
   end
 
   def edit
