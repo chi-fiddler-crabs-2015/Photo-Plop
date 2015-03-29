@@ -45,7 +45,7 @@ class AlbumsController < ApplicationController
     if current_user
       @favorite = current_user.favorites.find_by(album_id: @album)
     end
-    if @album.authenticate(current_user)
+    if @album.read_authenticate(current_user)
       render :show
     else
       render :prompt_for_password
