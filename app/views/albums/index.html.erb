@@ -2,33 +2,24 @@
 <%= link_to('Create a New Album', new_album_path) %>
 <ul>
   <% @owned_albums.each do |album| %>
-    <% if album.images.first %>
-      <li><%= link_to "#{album.title} #{cl_image_tag(album.images.first.location, :width => 100, :height => 100, :crop => :thumb)}".html_safe, album_path(album) %></li>
-    <% else %>
-      <li><%= link_to album.title, album_path(album) %></li>
-    <% end %>
+    <% @album = album %>
+    <%= render "album_list" %>
   <% end %>
 </ul>
 
 <h2>Albums I've Added Images To</h2>
 <ul>
   <% @albums_added_images_to.each do |album| %>
-    <% if album.images.first %>
-        <li><%= link_to "#{album.title} #{cl_image_tag(album.images.first.location, :width => 100, :height => 100, :crop => :thumb)}".html_safe, album_path(album) %></li>
-      <% else %>
-        <li><%= link_to album.title, album_path(album) %></li>
-      <% end %>
+    <% @album = album %>
+    <%= render "album_list" %>
     <% end %>
 </ul>
 
 <h2>Albums I've Favorited</h2>
 <ul>
   <% @fav_albums.each do |album| %>
-    <% if album.images.first %>
-        <li><%= link_to "#{album.title} #{cl_image_tag(album.images.first.location, :width => 100, :height => 100, :crop => :thumb)}".html_safe, album_path(album) %></li>
-      <% else %>
-        <li><%= link_to album.title, album_path(album) %></li>
-    <% end %>
+    <% @album = album %>
+    <%= render "album_list" %>
   <% end %>
 </ul>
 
