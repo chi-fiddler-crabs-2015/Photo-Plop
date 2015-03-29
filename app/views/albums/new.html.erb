@@ -12,7 +12,20 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
 
+  <%= f.label :password %>
+  <%= f.text_field :description, placeholder: "(Optional)" %>
 
+  <%= f.label :read_privilege, "Anyone can see" %>
+  <%= f.radio_button :read_privilege, "1" %>
+
+  <%= f.label :read_privilege, "Need password to see" %>
+  <%= f.radio_button :read_privilege, "2" %>
+
+  <%= f.label :write_privilege, "Anyone can upload images" %>
+  <%= f.radio_button :write_privilege, "1" %>
+
+  <%= f.label :write_privilege, "Need password to upload images" %>
+  <%= f.radio_button :write_privilege, "2" %>
 
   <%= f.submit "Create" %>
 <% end %>
