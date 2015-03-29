@@ -3,6 +3,7 @@ class ImagesController < ApplicationController
 
   def new
     @image = Image.new
+    render partial: 'new'
   end
 
   def create
