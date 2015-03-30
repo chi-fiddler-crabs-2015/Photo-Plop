@@ -20,7 +20,9 @@ RSpec.describe Album, type: :model do
 
     it { should validate_presence_of(:creator) }
 
-    it { should validate_presence_of(:permissions) }
+    it { should validate_presence_of(:read_privilege) }
+
+    it { should validate_presence_of(:write_privilege) }
 
     it { should validate_uniqueness_of(:vanity_url) }
 
