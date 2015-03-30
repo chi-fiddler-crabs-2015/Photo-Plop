@@ -36,7 +36,7 @@
         <li><%= link_to 'Create a New Album', new_album_path %></li>
         <li><%= link_to 'Created', albums_path(anchor: "created") %></li>
         <li><%= link_to 'Plopped To', albums_path(anchor: "plopped") %></li>
-        <li><%= link_to 'Liked', albums_path %></li>
+        <li><%= link_to 'Liked', albums_path(anchor: "liked") %></li>
         <li><%= link_to "Logout", logout_path %></li>
 
       <% else %>
