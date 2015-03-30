@@ -1,12 +1,13 @@
 <div class="album_show">
   <div class="row">
+
     <div class="small-9 large-9 columns">
       <h1><%= @album.title %></h1>
       <p>Description: <%= @album.description %></p>
       <p>Creator: <%= @album.creator.username %></p>
     </div>
-    <div class="small-3 large-3 columns">
 
+    <div class="small-3 large-3 columns">
       <div id="favorite-button-container">
         <% if current_user %>
           <%= render partial: "favorites/button"%>
@@ -27,14 +28,9 @@
         <img src="http://media.idownloadblog.com/wp-content/uploads/2013/04/Twitter-2.2-Mac-app-icon-small.png">
         <img src="http://www.waterproof-usa.com/_images/common/instagram.png">
       </div>
-
     </div>
+
   </div>
-
-
-
-
-
 
   <ul class="small-block-grid-3 medium-block-grid-5 large-block-grid-6">
     <% @album.images.each do |image| %>
@@ -47,4 +43,5 @@
       </li>
     <% end %>
   </ul>
+
 </div>
