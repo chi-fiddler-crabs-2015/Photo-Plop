@@ -16913,73 +16913,6 @@ return jQuery;
 
 
 
-$(document).ready(function() {
-
-  $(document).on('submit', '#favorite-button', function(e) {
-    e.preventDefault();
-    form = $(this)
-    $.ajax({
-      url: form.attr('action'),
-      method: form.attr('method'),
-      data: form.serialize(),
-      success: function(response) {
-        $('#favorite-button-container').html(response);
-      }
-    })
-
-  })
-
-})
-;
-$(document).ready(function() {
-  $("#share-button").on('click', function() {
-    $('#share-url-container').toggle();
-  })
-})
-;
-// $(document).ready(function() {
-
-//   $('#create-new-album').on('click', function(e) {
-//     link = $(this)
-
-//     $.ajax({
-//       url: link.attr('href'),
-//       method: 'get',
-//       success: function(response) {
-//         $('body').append(response)
-//       }
-//     })
-//   })
-
-// })
-;
-$(document).ready(function() {
-
-  $('#upload_button').on('click', function(e) {
-    form = $(this);
-    $.ajax({
-      url: form.attr('href'),
-      method: "get",
-      success: function(response) {
-        $('#upload-photo-box').append(response);
-      }
-    })
-  })
-
-  $(document).on('submit', '#image-password-form', function(e) {
-    form = $(this);
-    $.ajax({
-      url: form.attr('action'),
-      method: form.attr('method'),
-      data: form.serialize(),
-      success: function(response) {
-        $('#upload-photo-box').html(response);
-      }
-    })
-  })
-
-})
-;
 /*! jQuery UI - v1.11.1 - 2014-09-17
 * http://jqueryui.com
 * Includes: widget.js
@@ -20118,6 +20051,73 @@ var widget = $.widget;
 
 
 
+$(document).ready(function() {
+
+  $(document).on('submit', '#favorite-button', function(e) {
+    e.preventDefault();
+    form = $(this)
+    $.ajax({
+      url: form.attr('action'),
+      method: form.attr('method'),
+      data: form.serialize(),
+      success: function(response) {
+        $('#favorite-button-container').html(response);
+      }
+    })
+
+  })
+
+})
+;
+$(document).ready(function() {
+  $("#share-button").on('click', function() {
+    $('#share-url-container').toggle();
+  })
+})
+;
+// $(document).ready(function() {
+
+//   $('#create-new-album').on('click', function(e) {
+//     link = $(this)
+
+//     $.ajax({
+//       url: link.attr('href'),
+//       method: 'get',
+//       success: function(response) {
+//         $('body').append(response)
+//       }
+//     })
+//   })
+
+// })
+;
+$(document).ready(function() {
+
+  $('#upload_button').on('click', function(e) {
+    form = $(this);
+    $.ajax({
+      url: form.attr('href'),
+      method: "get",
+      success: function(response) {
+        $('#upload-photo-box').append(response);
+      }
+    })
+  })
+
+  $(document).on('submit', '#image-password-form', function(e) {
+    form = $(this);
+    $.ajax({
+      url: form.attr('action'),
+      method: form.attr('method'),
+      data: form.serialize(),
+      success: function(response) {
+        $('#upload-photo-box').html(response);
+      }
+    })
+  })
+
+})
+;
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -20130,6 +20130,7 @@ var widget = $.widget;
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 
 
 
