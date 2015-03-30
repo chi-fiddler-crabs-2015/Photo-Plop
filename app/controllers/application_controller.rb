@@ -23,6 +23,9 @@ class ApplicationController < ActionController::Base
     @_default_user ||= User.find_by(username: "Guest") if !session[:user_id]
   end
 
+  def group
+    ["peoples", "homies", "peeps", "friends", "compadres", "comadres", "network", "bae", "cohortmates", "family", "colleagues", "team", "frenemies", "BFFs"].sample
+  end
 
-  helper_method :current_user, :default_user
+  helper_method :current_user, :default_user, :group
 end
