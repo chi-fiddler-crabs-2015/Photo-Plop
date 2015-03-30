@@ -25,6 +25,12 @@ RSpec.describe AlbumsController, type: :controller do
   end
 
   context 'GET #new' do
+    it 'assigns @album to a new album' do
+      get :new
+      expect(assigns(:album)).to be_a_new Album
+    end
+  end
 
+  context 'POST #create' do
   end
 end
