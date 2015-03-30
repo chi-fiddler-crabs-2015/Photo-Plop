@@ -25,12 +25,14 @@
 
 <ul class="small-block-grid-3 medium-block-grid-5 large-block-grid-6">
   <% @album.images.each do |image| %>
-     <li><%= link_to image_tag(image.location, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb, :gravity => :face), album_image_path(@album.id, image.id) %></li>
+     <li class="img-tile">
+      <% if image.owner?(current_user) %>
+        <%= button_to "DELETE", {:controller => :images,
+        :action => 'destroy', album_id: @album.id, :id => image.id }, :method => :delete %>
+      <% end %>
+      <%= link_to image_tag(image.location, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb), album_image_path(@album.id, image.id) %>
+    </li>
 
-<!--   <% if image.owner?(current_user) %>
-    <%= button_to "DELETE", {:controller => :images,
-    :action => 'destroy', album_id: @album.id, :id => image.id }, :method => :delete %>
-  <% end %> -->
 
   <% end %>
 </ul>
