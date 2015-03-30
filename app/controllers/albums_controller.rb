@@ -34,6 +34,8 @@ class AlbumsController < ApplicationController
   def create
     new_album = current_user.albums.new(album_params)
     if new_album.save
+      album_user_params = {user: current_user, album: new_album}.merge(auth_params)
+      AlbumsUser.create(album_user_params)
       redirect_to album_path(new_album)
     else
       @errors = new_album.errors
@@ -88,6 +90,10 @@ class AlbumsController < ApplicationController
 
   def album_params
     params.require(:album).permit(:title, :description, :vanity_url, :password, :read_privilege, :write_privilege)
+  end
+
+  def auth_params
+    params.require(:album).permit(:read_privilege, :write_privilege)
   end
 
 end
