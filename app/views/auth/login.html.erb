@@ -1,13 +1,13 @@
-<!-- has login form for user, renders errors -->
-<!-- is index of site for user that isn't signed in -->
-<!-- link to signup form for new user -->
-<!-- has blurb about what site is about -->
-<p>I am a blurb about what Photoplop is about.</p>
+<section class="intro_blurb">
+  <%= image_tag("Photoplop_Logo.png", size: "350x150", alt: "photoplop logo") %>
+  <h3>Snap It. Plop It. Share It.</h3>
+  <p>Build photo albums with your <%= group %>. </p>
+</section>
 
-<% if flash[:alert] %>
-  <h3 class="alert"> <%=flash[:alert] %></h3>
-<% end %>
 <h1>LOGIN</h1>
+<% if flash[:alert] %>
+  <h3 class="alert"> <%=flash[:alert] %> </h3>
+<% end %>
 <%= form_for :user do |f| %>
 
   <%= f.label :username %>
