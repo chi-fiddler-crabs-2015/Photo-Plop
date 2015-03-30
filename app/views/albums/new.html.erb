@@ -4,7 +4,7 @@
 
 <h2>Create an Album</h2>
 
-<%= form_for :album, url: albums_path do |f| %>
+<%= form_for :album, url: albums_path, html: {id: 'new-album-form'} do |f| %>
   <%= render "shared/errors" %>
   <%= f.label :title %>
   <%= f.text_field :title, :required => true %>
@@ -12,23 +12,20 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
 
-  <%= f.label :permissions, "Anyone with link can see and contribute" %>
-  <%= f.radio_button :permissions, "1" %>
+  <%= f.label :password %>
+  <%= f.text_field :password, placeholder: "(Optional)" %>
 
-  <%= f.label :permissions, "Anyone with link can see, password required to contribute" %>
-  <%= f.radio_button :permissions, "2" %>
+  <%= f.label :read_privilege, "Anyone can see" %>
+  <%= f.radio_button :read_privilege, "1" %>
 
-  <%= f.label :permissions, "Anyone with link can see, only specified accounts can contribute" %>
-  <%= f.radio_button :permissions, "3" %>
+  <%= f.label :read_privilege, "Need password to see" %>
+  <%= f.radio_button :read_privilege, "2" %>
 
-  <%= f.label :permissions, "Password required to see album and contribute" %>
-  <%= f.radio_button :permissions, "4" %>
+  <%= f.label :write_privilege, "Anyone can upload images" %>
+  <%= f.radio_button :write_privilege, "1" %>
 
-  <%= f.label :permissions, "Password required to see album, only specified accounts can contribute" %>
-  <%= f.radio_button :permissions, "5" %>
-
-  <%= f.label :permissions, "Only specified accounts can see album and contribute" %>
-  <%= f.radio_button :permissions, "6" %>
+  <%= f.label :write_privilege, "Need password to upload images" %>
+  <%= f.radio_button :write_privilege, "2" %>
 
   <%= f.submit "Create" %>
 <% end %>

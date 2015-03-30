@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 
   resources :users
   resources :albums do
-    resources :images
+    resources :images do
+    end
+    post '/imageauth' => 'images#auth'
+    post '/albumauth' => 'albums#auth'
   end
 
   resources :collaborators_albums

@@ -1,23 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>PhotoPlop</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<!-- navbar will go here, has buttons for:
-      + (album or photo)
-      /// (my albums -> list of all albums) (contributed albums -> list of albums) (logout) -->
-<%= link_to "Home", root_path %> |
-<% if current_user %>
-  <a href="/logout">Log Out</a>
-<% else %>
-  <a href="<%= new_user_path %>">Create an Account</a>
-  <a href="/login">Log In</a>
-<% end %>
-<%= yield %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-</body>
+    <title><%= content_for?(:title) ? yield(:title) : "photoplop" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Galindo|Lato:400,700,400italic' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+
+<div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+    <nav class="tab-bar">
+      <section class="left tab-bar-section">
+        <h1 class="title">photoplop</h1>
+      </section>
+
+      <section class="right-small">
+        <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+      </section>
+    </nav>
+
+
+    <aside class="right-off-canvas-menu">
+      <ul class="off-canvas-list">
+      <% if current_user %>
+        <li><%= link_to 'Create a New Album', new_album_path %></li>
+        <li><%= link_to 'Created', albums_path(anchor: "created") %></li>
+        <li><%= link_to 'Plopped To', albums_path(anchor: "plopped") %></li>
+        <li><%= link_to 'Liked', albums_path %></li>
+        <li><%= link_to "Logout", logout_path %></li>
+
+      <% else %>
+        <li><%= link_to "Sign Up", new_user_path %></li>
+        <li><%= link_to "Log In", login_path %></li>
+      <% end %>
+      </ul>
+    </aside>
+
+    <section class="main-section">
+      <%= yield %>
+    </section>
+
+  <a class="exit-off-canvas"></a>
+
+  </div>
+</div>
+
+
+
+  </body>
 </html>
