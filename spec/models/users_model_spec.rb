@@ -29,10 +29,18 @@ RSpec.describe User, type: :model do
   end
 
   describe "#Authenticate" do
-    let(:user) { create(:user) }
+    let(:user) { create(:user, password: 'abc') }
 
     it 'calling password returns a password hash' do
       expect(user.password).to match(/\$2a/)
+    end
+
+    it 'returns a user object on correct password' do
+      expect(User.authenticate({username: user.username, password: 'abc'})).to be_a User
+    end
+
+    it 'returns nil on incorrect password' do
+      expect(User.authenticate({username: user.username, password: 'abcd'})).to be_nil
     end
   end
 end
