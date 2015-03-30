@@ -1,31 +1,31 @@
-<!-- this is a partial that pops up over the list of albums -->
-<!-- field for title, option to add images, radio buttons for permission options -->
-<!-- can X this out to cancel creating album -->
-
 <h2>Create an Album</h2>
 
 <%= form_for :album, url: albums_path, html: {id: 'new-album-form'} do |f| %>
   <%= render "shared/errors" %>
-  <%= f.label :title %>
-  <%= f.text_field :title, :required => true %>
+  <div class="10 columns">
+    <%= f.label :title, "Album Title" %>
+    <%= f.text_field :title, :required => true %>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %>
+    <%= f.label :description, "Describe Your Album" %>
+    <%= f.text_area :description %>
 
-  <%= f.label :password %>
-  <%= f.text_field :password, placeholder: "(Optional)" %>
+    <label for="read_privilege">Who can view your album?</label>
+    <%= f.radio_button :read_privilege, "1" %>
+    <%= f.label :read_privilege, "Anyone" %>
 
-  <%= f.label :read_privilege, "Anyone can see" %>
-  <%= f.radio_button :read_privilege, "1" %>
+    <%= f.radio_button :read_privilege, "2" %>
+    <%= f.label :read_privilege, "Anyone with the password" %>
 
-  <%= f.label :read_privilege, "Need password to see" %>
-  <%= f.radio_button :read_privilege, "2" %>
+    <label for="write privilege">Who can add images to your album?</label>
+    <%= f.radio_button :write_privilege, "1" %>
+    <%= f.label :write_privilege, "Anyone" %>
 
-  <%= f.label :write_privilege, "Anyone can upload images" %>
-  <%= f.radio_button :write_privilege, "1" %>
+    <%= f.radio_button :write_privilege, "2" %>
+    <%= f.label :write_privilege, "Anyone with the password" %>
 
-  <%= f.label :write_privilege, "Need password to upload images" %>
-  <%= f.radio_button :write_privilege, "2" %>
+    <%= f.label :password %>
+    <%= f.text_field :password %>
 
-  <%= f.submit "Create" %>
+    <%= f.submit "Create Your Album" %>
+  </div>
 <% end %>
