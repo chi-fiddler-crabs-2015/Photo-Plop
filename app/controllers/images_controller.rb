@@ -3,14 +3,22 @@ class ImagesController < ApplicationController
 
   def new
     @image = Image.new
-
-    if Album.find_by(id: params[:album_id]).write_authenticate(current_user)
+    @album = Album.find_by(id: params[:album_id])
+    if @album.write_authenticate(current_user)
       render partial: 'new'
     else
       render partial: 'prompt_for_password'
     end
+  end
 
-
+  def auth
+    album = Album.find_by(id: params[:album_id])
+    if album.write_authenticate(current_user, params[:album][:password])
+      render partial: 'new'
+    else
+      @errors = "You entered an incorrect password"
+      redirect_to :back
+    end
   end
 
   def create
@@ -33,7 +41,6 @@ class ImagesController < ApplicationController
   end
 
   def destroy
-    puts params
     Image.find_by(id: params[:id]).destroy
     redirect_to album_path(params[:album_id])
   end

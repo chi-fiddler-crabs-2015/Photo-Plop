@@ -30,7 +30,6 @@ class Album < ActiveRecord::Base
 
   def read_authenticate(user, password='')
     album_user = AlbumsUser.find_or_create_by(user: user, album: self)
-    puts "user - #{user.inspect}  *****  album - #{self.inspect}"
     if album_user.read_privilege >= self.read_privilege
       return true
     elsif ( self.password == nil || self.password == password )
@@ -43,7 +42,6 @@ class Album < ActiveRecord::Base
 
   def write_authenticate(user, password='')
     album_user = AlbumsUser.find_or_create_by(user: user, album: self)
-    puts "user - #{user.inspect}  *****  album - #{self.inspect}"
     if album_user.write_privilege >= self.write_privilege
       return true
     elsif ( self.password == nil || self.password == password )
