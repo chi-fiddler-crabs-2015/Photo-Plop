@@ -1,7 +1,22 @@
 <% if @favorite.nil? %>
-  <%= link_to raw("<i class=\"fa fa-heart-o\"></i>"), favorites_path, params: {user: current_user, album: @album}, id: "favorite-button", remote: true,  method: :put %>
+  <%= button_to "Mark as Favorite", favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true }, class: 'fa fa-heart-o' %>
 <% elsif @favorite.favorite == false %>
-  <%= link_to raw("<i class=\"fa fa-heart-o\"></i>"), favorites_path, params: {user: current_user, album: @album}, id: "favorite-button", remote: true,  method: :put %>
+  <%= button_to "Mark as Favorite", favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true }, class: 'fa fa-heart-o'%>
 <% else %>
-  <%= link_to raw("<i class=\"fa fa-heart\"></i>"), favorites_path, params: {user: current_user, album: @album}, id: "favorite-button", remote: true,  method: :put %>
+  <%= button_to "Remove Favorite", favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true }, class: 'fa fa-heart' %>
 <% end %>
+
+<!--
+<%= link_to(
+      content_tag(
+       # :i,
+       # nil,
+        #class: 'fa fa-trash-o'
+      ),
+      #method: :delete,
+     # data: {
+       # confirm: 'Are you sure?'
+      }
+    )
+%>
+ -->
