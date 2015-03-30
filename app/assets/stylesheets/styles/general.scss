@@ -1,18 +1,39 @@
 .main-section {
-  min-height: 50em;
+  min-height: 40em;
 }
 
-.tab-bar img {
-  max-height: 65px;
-  margin-top: -0.5em;
+.tab-bar {
+  background-color: $dark-purple;
+
+  img {
+    max-height: 65px;
+    margin-top: -0.5em;
+  }
+
+  .right-off-canvas-toggle {
+
+  }
+}
+
+.right-off-canvas-menu {
+  background-color: $med-purple;
+  font-family: $body-font;
+
+  a {
+    color: $gray;
+    font-size: 1.5em;
+  }
 }
 
 .album_list {
   background-color: $gray;
+
   h1 {
+    font-size: 2em;
     a {
       color: $dark-purple;
     }
+
     font-family: $body-font;
     padding-left: 0.2em;
     width: 100%;
