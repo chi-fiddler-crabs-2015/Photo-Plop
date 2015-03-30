@@ -9,7 +9,8 @@ class Album < ActiveRecord::Base
 
   validates :title, :creator, presence: true
   validates :vanity_url, uniqueness: true
-
+  validates :read_privilege, presence: true
+  validates :write_privilege, presence: true
   validates_length_of :title, :maximum => 75
 
   validates_length_of :password, :maximum => 20
