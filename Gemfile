@@ -40,7 +40,7 @@ gem 'puma'
 # gem 'puma'
 
 gem 'ffaker'
-gem 'font-awesome-sass'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'rspec'
