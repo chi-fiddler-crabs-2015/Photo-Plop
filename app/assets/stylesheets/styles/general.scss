@@ -8,9 +8,16 @@
 }
 
 .album_list {
+  background-color: $gray;
   h1 {
+    a {
+      color: $dark-purple;
+    }
     font-family: $body-font;
-    padding-left: 0.3em;
+    padding-left: 0.2em;
+    width: 100%;
+    background-color: $light-purple;
+    margin: 0;
   }
 
   p {
