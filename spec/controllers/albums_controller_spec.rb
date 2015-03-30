@@ -33,4 +33,29 @@ RSpec.describe AlbumsController, type: :controller do
 
   context 'POST #create' do
   end
+
+  context 'DELETE #destroy' do
+
+    describe "successful delete request" do
+      it 'destroys an album if the user is the owner' do
+        album = create(:album, creator: user)
+        expect {
+          delete :destroy, { id: album.id }
+        }.to change{Album.count}
+      end
+
+      it 'destroying an album to redirect home' do
+        album = create(:album, creator: user)
+        expect(
+          delete :destroy, { id: album.id }
+        ).to redirect_to albums_path
+      end
+    end
+
+    describe "unsuccessful delete request" do
+      it 'assigns @errors letting user know they dont have permission' do
+
+      end
+    end
+  end
 end

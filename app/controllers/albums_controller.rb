@@ -86,6 +86,9 @@ class AlbumsController < ApplicationController
     if album.owner?(current_user)
       album.destroy
       redirect_to albums_path
+    else
+      @errors = "You don't have permission to delete this!"
+      redirect_to :back
     end
   end
 
