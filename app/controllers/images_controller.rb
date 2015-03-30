@@ -1,4 +1,4 @@
-class ImagesController < ApplicationController
+hclass ImagesController < ApplicationController
   # include ActionController::Live
 
   def new
