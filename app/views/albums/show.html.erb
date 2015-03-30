@@ -1,6 +1,6 @@
 <h1><%= @album.title %></h1>
 <p><%= @album.description %></p>
-<p><%= @album.creator.username %></p>
+<p>Created By: <%= @album.creator.username %></p>
 
 <div id="favorite-button-container">
   <% if current_user %>

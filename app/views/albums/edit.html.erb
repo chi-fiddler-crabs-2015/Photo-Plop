@@ -6,21 +6,26 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
 
+<p>
+  <%= f.radio_button :read_privilege, "1" %>
+  <%= f.label :read_privilege, "Anyone can see" %>
+
+  <%= f.radio_button :read_privilege, "2" %>
+  <%= f.label :read_privilege, "Need password to see" %>
+</p>
+
+<p>
+  <%= f.radio_button :write_privilege, "1" %>
+  <%= f.label :write_privilege, "Anyone can upload" %>
+
+  <%= f.radio_button :write_privilege, "2" %>
+  <%= f.label :write_privilege, "Need password to upload" %>
+</p>
+<p>
   <%= f.label :password %>
   <%= f.text_field :password, placeholder: "(Optional)" %>
-
-  <%= f.label :read_privilege, "Anyone can see" %>
-  <%= f.radio_button :read_privilege, "1" %>
-
-  <%= f.label :read_privilege, "Need password to see" %>
-  <%= f.radio_button :read_privilege, "2" %>
-
-  <%= f.label :write_privilege, "Anyone can upload images" %>
-  <%= f.radio_button :write_privilege, "1" %>
-
-  <%= f.label :write_privilege, "Need password to upload images" %>
-  <%= f.radio_button :write_privilege, "2" %>
-
+</p>
+  <br />
   <%= f.submit "Update" %>
 <% end %>
 
@@ -28,7 +33,7 @@
   <%= cl_image_tag(image.location) %>
   <%= button_to "DELETE", {:controller => :images,
       :action => 'destroy', album_id: @album.id, :id => image.id }, :method => :delete %>
-  <br>
+  <br />
 <% end %>
 
 <%= button_to "DELETE ALBUM", @album, method: :delete %>
