@@ -2,7 +2,7 @@
   <li class="album-tile">
     <a href='<%= album_path(@album) %>'>
       <h3 class="img-count"><%= @album.images.count %></h3>
-      <%= image_tag(@album.images.first.location, :type => "fetch", :width => 300, :height => 300, :crop => :thumb) %>
+      <%= image_tag(@album.images.first.location, :type => "fetch", :width => 500, :height => 500, :crop => :thumb) %>
       <h2><span class="title"><%= @album.title %></span></h2>
     </a>
   </li>
