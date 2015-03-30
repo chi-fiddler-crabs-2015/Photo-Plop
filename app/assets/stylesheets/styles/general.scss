@@ -7,6 +7,17 @@
   margin-top: -0.5em;
 }
 
+.album_list {
+  h1 {
+    font-family: $body-font;
+    padding-left: 0.3em;
+  }
+
+  p {
+    padding-left: 2em;
+  }
+}
+
 .album-tile {
   width: 100%;
   position: relative;
