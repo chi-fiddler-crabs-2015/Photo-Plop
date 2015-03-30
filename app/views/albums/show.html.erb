@@ -1,5 +1,17 @@
+<<<<<<< HEAD
 <div class="album_show">
   <div class="row">
+=======
+<h1><%= @album.title %></h1>
+<p><%= @album.description %></p>
+<p>Created By: <%= @album.creator.username %></p>
+
+<div id="favorite-button-container">
+  <% if current_user %>
+    <%= render partial: "favorites/button"%>
+  <% end %>
+</div>
+>>>>>>> 70753bee747d3619e703b36aa4b8ac9d84d0d91b
 
     <div class="small-9 medium-10 large-10 columns">
       <h1><%= @album.title %></h1>
@@ -26,11 +38,10 @@
 
     </div>
 
-
   </div>
 
   <div id="share-url-container" style="display: none;" class="row">
-    Your album's URL is: <span><input type="text" value="http://www.photoplop.com/<%= @album.vanity_url %>" disabled></input></span>
+    Your album's URL is: <span><input type="text" value="<%= show_vanity_url(@album) %>" disabled></input></span>
     <img src="http://media.idownloadblog.com/wp-content/uploads/2013/04/Twitter-2.2-Mac-app-icon-small.png">
     <img src="http://www.waterproof-usa.com/_images/common/instagram.png">
   </div>

@@ -1,19 +1,19 @@
 class AlbumsController < ApplicationController
   # include ActionController::Live
+  before_action :not_logged_in, only: [ :index, :new, :create, :edit, :destroy]
 
   def index
-    @owned_albums = current_user.albums
+      @owned_albums = current_user.albums
 
-    @albums_added_images_to = []
-    owned_images = Image.where(owner: current_user)
-    owned_images.each do |image|
-      @albums_added_images_to.push(image.album) unless  ( @albums_added_images_to.include?(image.album) || @owned_albums.include?(image.album) )
-    end
-
-    @fav_albums = []
-    current_user.favorites.each do |fav|
-      @fav_albums << fav.album if fav.favorite
-    end
+      @albums_added_images_to = []
+      owned_images = Image.where(owner: current_user)
+      owned_images.each do |image|
+        @albums_added_images_to.push(image.album) unless  ( @albums_added_images_to.include?(image.album) || @owned_albums.include?(image.album) )
+      end
+      @fav_albums = []
+      current_user.favorites.each do |fav|
+        @fav_albums << fav.album if fav.favorite
+      end
   end
 
   def new
@@ -26,21 +26,21 @@ class AlbumsController < ApplicationController
     if album.read_authenticate(current_user, params[:album][:password])
       redirect_to album_path(album)
     else
-      @errors = "You entered an incorrect password"
+      flash[:alert] = "You entered an incorrect password"
       redirect_to :back
     end
   end
 
   def create
-    new_album = current_user.albums.new(album_params)
-    if new_album.save
-      album_user_params = {user: current_user, album: new_album}.merge(auth_params)
-      AlbumsUser.create(album_user_params)
-      redirect_to album_path(new_album)
-    else
-      @errors = new_album.errors
-      render :'new'
-    end
+      new_album = current_user.albums.new(album_params)
+      if new_album.save
+        album_user_params = {user: current_user, album: new_album}.merge(auth_params)
+        AlbumsUser.create(album_user_params)
+        redirect_to album_path(new_album)
+      else
+        @errors = new_album.errors
+        render :new
+      end
   end
 
   def vanity
@@ -82,8 +82,14 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    Album.find_by(id: params[:id]).destroy
-    redirect_to albums_path
+    album = Album.find_by(id: params[:id])
+    if album.owner?(current_user)
+      album.destroy
+      redirect_to albums_path
+    else
+      @errors = "You don't have permission to delete this!"
+      redirect_to :back
+    end
   end
 
   private
