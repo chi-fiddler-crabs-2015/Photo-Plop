@@ -1,7 +1,7 @@
 <% if @favorite.nil? %>
-  <%= button_to "Mark as Favorite", favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true } %>
+  <%= link_to raw("<i class=\"fa fa-heart-o\"></i>"), favorites_path, params: {user: current_user, album: @album}, id: "favorite-button", remote: true,  method: :put %>
 <% elsif @favorite.favorite == false %>
-  <%= button_to "Mark as Favorite", favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true } %>
+  <%= link_to raw("<i class=\"fa fa-heart-o\"></i>"), favorites_path, params: {user: current_user, album: @album}, id: "favorite-button", remote: true,  method: :put %>
 <% else %>
-  <%= button_to "Remove Favorite", favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true } %>
+  <%= link_to raw("<i class=\"fa fa-heart\"></i>"), favorites_path, params: {user: current_user, album: @album}, id: "favorite-button", remote: true,  method: :put %>
 <% end %>
