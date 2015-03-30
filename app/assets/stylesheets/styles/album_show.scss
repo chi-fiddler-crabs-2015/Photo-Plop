@@ -30,9 +30,16 @@
   }
 
 
-  .img-tile form {
-    position: absolute;
-  }
+  .img-tile {
+    padding: 0;
 
+    form {
+      position: absolute;
+
+      input[type="submit"] {
+        color: red;
+      }
+    }
+  }
 }
 

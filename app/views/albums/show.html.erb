@@ -24,7 +24,9 @@
       <% if @album.owner?(current_user) %>
         <%= link_to raw("<i class=\"fa fa-pencil-square\"></i>"), edit_album_path(@album.id) %>
       <% end %>
+
     </div>
+
   </div>
 
   <div id="share-url-container" style="display: none;" class="row">
@@ -37,9 +39,9 @@
     <% @album.images.each do |image| %>
        <li class="img-tile">
         <% if image.owner?(current_user) %>
-          <%= button_to "DELETE", {:controller => :images,
-          :action => 'destroy', album_id: @album.id, :id => image.id }, :method => :delete %>
-        <% end %>
+          <%= button_to "", {:controller => :images,
+          :action => 'destroy', album_id: @album.id, :id => image.id }, :class => "fa fa-trash-o",  :method => :delete %>
+       <% end %>
         <%= link_to image_tag(image.location, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb), album_image_path(@album.id, image.id) %>
       </li>
     <% end %>
