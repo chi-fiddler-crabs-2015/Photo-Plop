@@ -1,24 +1,28 @@
-<h1><a href="#created">My Albums</a></h1>
-<ul id="my-album-list" class="small-block-grid-3 medium-block-grid-5 large-block-grid-6">
-  <% @owned_albums.each do |album| %>
-    <% @album = album %>
-    <%= render "album_list" %>
-  <% end %>
-</ul>
-
-<h1><a href="#plopped">Albums I've Added Images To</a></h1>
-<ul class="small-block-grid-3 medium-block-grid-5 large-block-grid-6">
-  <% @albums_added_images_to.each do |album| %>
-    <% @album = album %>
-    <%= render "album_list" %>
+<div class="album_list">
+  <h1><a href="#created">Created</a></h1>
+  <ul id="my-album-list" class="small-block-grid-3 medium-block-grid-5 large-block-grid-6">
+    <% if @owned_albums.length == 0 %><p>(none)</p><% end %>
+    <% @owned_albums.each do |album| %>
+      <% @album = album %>
+      <%= render "album_list" %>
     <% end %>
-</ul>
+  </ul>
 
-<h1><a href="#liked">Albums I've Liked</a></h1>
-<ul class="small-block-grid-3 medium-block-grid-5 large-block-grid-6">
-  <% @fav_albums.each do |album| %>
-    <% @album = album %>
-    <%= render "album_list" %>
-  <% end %>
-</ul>
+  <h1><a href="#plopped">Plopped To</a></h1>
+  <ul class="small-block-grid-3 medium-block-grid-5 large-block-grid-6">
+    <% if @albums_added_images_to.length == 0 %><p>(none)</p><% end %>
+    <% @albums_added_images_to.each do |album| %>
+      <% @album = album %>
+      <%= render "album_list" %>
+      <% end %>
+  </ul>
 
+  <h1><a href="#liked">Liked</a></h1>
+  <ul class="small-block-grid-3 medium-block-grid-5 large-block-grid-6">
+    <% if @fav_albums.length == 0 %><p>(none)</p><% end %>
+    <% @fav_albums.each do |album| %>
+      <% @album = album %>
+      <%= render "album_list" %>
+    <% end %>
+  </ul>
+</div>
