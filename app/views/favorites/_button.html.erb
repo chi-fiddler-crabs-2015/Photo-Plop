@@ -1,0 +1,7 @@
+<% if @favorite.nil? %>
+  <%= button_to "Mark as Favorite", favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true } %>
+<% elsif @favorite.favorite == false %>
+  <%= button_to "Mark as Favorite", favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true } %>
+<% else %>
+  <%= button_to "Remove Favorite", favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true } %>
+<% end %>

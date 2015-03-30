@@ -1,13 +1,12 @@
-<h2>My Albums</h2>
-<%= link_to('Create a New Album', new_album_path) %>
-<ul>
+<h2><a href="#created">My Albums</a></h2>
+<ul id="my-album-list">
   <% @owned_albums.each do |album| %>
     <% @album = album %>
     <%= render "album_list" %>
   <% end %>
 </ul>
 
-<h2>Albums I've Added Images To</h2>
+<h2><a href="#plopped">Albums I've Added Images To</a></h2>
 <ul>
   <% @albums_added_images_to.each do |album| %>
     <% @album = album %>
@@ -15,7 +14,7 @@
     <% end %>
 </ul>
 
-<h2>Albums I've Favorited</h2>
+<h2><a href="#liked">Albums I've Liked</a></h2>
 <ul>
   <% @fav_albums.each do |album| %>
     <% @album = album %>

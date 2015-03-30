@@ -7,7 +7,7 @@ class Album < ActiveRecord::Base
   has_many :collaborators, through: :collaborators_albums
   has_many :favorites, :dependent => :destroy
 
-  validates :title, :creator, :permissions, presence: true
+  validates :title, :creator, presence: true
   validates :vanity_url, uniqueness: true
 
   validates_length_of :title, :maximum => 75
@@ -20,10 +20,36 @@ class Album < ActiveRecord::Base
   end
 
   def owner?(user)
-    if self.creator.id == user.id
+    if self.creator == user
       true
     else
       false
+    end
+  end
+
+  def read_authenticate(user, password='')
+    album_user = AlbumsUser.find_or_create_by(user: user, album: self)
+    puts "user - #{user.inspect}  *****  album - #{self.inspect}"
+    if album_user.read_privilege >= self.read_privilege
+      return true
+    elsif ( self.password == nil || self.password == password )
+      album_user.update_attributes(read_privilege: self.read_privilege)
+      return true
+    else
+      return false
+    end
+  end
+
+  def write_authenticate(user, password='')
+    album_user = AlbumsUser.find_or_create_by(user: user, album: self)
+    puts "user - #{user.inspect}  *****  album - #{self.inspect}"
+    if album_user.write_privilege >= self.write_privilege
+      return true
+    elsif ( self.password == nil || self.password == password )
+      album_user.update_attributes(write_privilege: self.write_privilege)
+      return true
+    else
+      return false
     end
   end
 
