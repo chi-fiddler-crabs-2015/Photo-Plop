@@ -21,6 +21,16 @@ class AlbumsController < ApplicationController
     # render partial: 'new'
   end
 
+   def auth
+    album = Album.find_by(id: params[:album_id])
+    if album.read_authenticate(current_user, params[:album][:password])
+      redirect_to album_path(album)
+    else
+      @errors = "You entered an incorrect password"
+      redirect_to :back
+    end
+  end
+
   def create
     new_album = current_user.albums.new(album_params)
     if new_album.save
