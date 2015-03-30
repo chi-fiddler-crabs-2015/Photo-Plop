@@ -26,7 +26,7 @@ class AlbumsController < ApplicationController
     if album.read_authenticate(current_user, params[:album][:password])
       redirect_to album_path(album)
     else
-      @errors = "You entered an incorrect password"
+      flash[:alert] = "You entered an incorrect password"
       redirect_to :back
     end
   end
