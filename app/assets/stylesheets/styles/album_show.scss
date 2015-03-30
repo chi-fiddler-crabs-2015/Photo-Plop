@@ -1,6 +1,22 @@
-.img-tile {
-    form {
-      position: absolute;
+.album_show {
+  background-color: $gray;
+  font-family: $body-font;
+  min-height: 40em;
 
-    }
+  h1 {
+    font-size: 1.8em;
+    color: $dark-purple;
+  }
+
+  p {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+  }
+
+
+  .img-tile form {
+    position: absolute;
+  }
+
 }
+
