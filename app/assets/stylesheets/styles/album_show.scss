@@ -1,7 +1,23 @@
 .album_show {
   background-color: $gray;
   font-family: $body-font;
-  min-height: 40em;
+  min-height: 60em;
+
+  .row {
+    background-color: $light-purple;
+    margin: 0;
+    min-width: 100%;
+  }
+
+  a {
+    font-size: 1.8em;
+    color: $dark-purple;
+    margin-right: 0.1em;
+  }
+
+  a:hover {
+    color: $med-blue;
+  }
 
   h1 {
     font-size: 1.8em;
