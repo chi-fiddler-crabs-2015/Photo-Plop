@@ -5,7 +5,6 @@ class AuthController < ApplicationController
   end
 
   def login
-    puts params[:user]
     user = User.authenticate(params[:user])
     if user
       session[:user_id] = user.id

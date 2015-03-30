@@ -34,7 +34,19 @@ RSpec.describe Album, type: :model do
 
   describe "Database" do
 
-     it { should have_db_index(:creator_id) }
+    it { should have_db_index(:creator_id) }
+
+  end
+
+  describe "Owner?" do
+
+  end
+
+  describe "Read_Authenticate" do
+
+  end
+
+  describe "Write_Authenticate" do
 
   end
 end

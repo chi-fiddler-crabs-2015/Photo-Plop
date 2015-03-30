@@ -39,7 +39,7 @@ class AlbumsController < ApplicationController
         redirect_to album_path(new_album)
       else
         @errors = new_album.errors
-        render :'new'
+        render :new
       end
   end
 
@@ -86,6 +86,9 @@ class AlbumsController < ApplicationController
     if album.owner?(current_user)
       album.destroy
       redirect_to albums_path
+    else
+      @errors = "You don't have permission to delete this!"
+      redirect_to :back
     end
   end
 
