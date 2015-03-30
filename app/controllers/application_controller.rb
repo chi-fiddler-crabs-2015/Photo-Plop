@@ -19,6 +19,12 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
 
+  def not_logged_in
+    unless current_user
+      redirect_to root_path
+    end
+  end
+
   def default_user
     @_default_user ||= User.find_by(username: "Guest") if !session[:user_id]
   end
