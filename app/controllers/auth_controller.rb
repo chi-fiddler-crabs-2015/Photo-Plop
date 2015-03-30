@@ -5,7 +5,6 @@ class AuthController < ApplicationController
   end
 
   def login
-    puts params[:user]
     user = User.authenticate(params[:user])
     if user
       session[:user_id] = user.id
@@ -19,5 +18,6 @@ class AuthController < ApplicationController
     session.delete(:user_id)
     redirect_to root_path
   end
+
 
 end
