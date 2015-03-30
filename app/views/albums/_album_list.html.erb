@@ -1,5 +1,5 @@
 <% if @album.images.first %>
-  <li><%= link_to "#{@album.title} #{cl_image_tag(@album.images.first.location, :width => 100, :height => 100, :crop => :thumb)} #{@album.images.count} images".html_safe, album_path(@album) %></li>
+  <li><a href='<%= album_path(@album) %>'><h2><%= @album.title %></h2><%= image_tag(@album.images.first.location, :type => "fetch", :width => 200, :height => 200, :crop => :thumb) %><h3><%= @album.images.count %> images</h3></a></li>
   <% else %>
     <li><%= link_to "#{@album.title} #{@album.images.count} images", album_path(@album) %></li>
 <% end %>
