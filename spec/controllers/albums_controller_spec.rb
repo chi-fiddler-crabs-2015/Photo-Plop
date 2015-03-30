@@ -32,10 +32,40 @@ RSpec.describe AlbumsController, type: :controller do
   end
 
   context 'POST #create' do
+    describe "when valid params are passed" do
+      it 'creates a new album' do
+        expect {
+          post :create, {album: {title: "test", creator: user} }
+        }.to change{Album.count}
+      end
+      it 'redirects to the new album' do
+        expect(
+          post :create, {album: {title: "test", creator: user} }
+        ).to redirect_to album_path(Album.last.id)
+      end
+    end
+
+    describe "when invalid params are passed" do
+      it 'does not create a new album' do
+        expect {
+          post :create, {album: { creator: user} }
+        }.not_to change{Album.count}
+      end
+      it 'redirects to the create album page' do
+        post :create, {album: {creator: user} }
+        expect(assigns(:errors)).not_to be nil
+      end
+    end
+  end
+
+  context 'GET #edit' do
+    it 'assigns @album to the current album' do
+      get :edit, { id: album }
+      expect(assigns(:album)).to eq album
+    end
   end
 
   context 'DELETE #destroy' do
-
     describe "successful delete request" do
       it 'destroys an album if the user is the owner' do
         album = create(:album, creator: user)
@@ -54,8 +84,21 @@ RSpec.describe AlbumsController, type: :controller do
 
     describe "unsuccessful delete request" do
       it 'assigns @errors letting user know they dont have permission' do
+        album = create(:album)
+        @request.env['HTTP_REFERER'] = '/albums'
+        expect {
+          delete :destroy, { id: album.id }
+        }.not_to change{Album.count}
+      end
 
+      it 'redirects back' do
+        album = create(:album, creator: user)
+        @request.env['HTTP_REFERER'] = '/albums'
+        expect(
+          delete :destroy, { id: album.id }
+        ).to redirect_to albums_path
       end
     end
+
   end
 end

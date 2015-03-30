@@ -39,7 +39,7 @@ class AlbumsController < ApplicationController
         redirect_to album_path(new_album)
       else
         @errors = new_album.errors
-        render :'new'
+        render :new
       end
   end
 
