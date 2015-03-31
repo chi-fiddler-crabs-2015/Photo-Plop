@@ -1,0 +1,14 @@
+<%= form_for :album, method: :put, html: {id: "update-album-form"}, remote: true,  url: album_path(params[:id]) do |f| %>
+  <%= render "shared/errors" %>
+  <%= f.label :title %>
+  <%= f.text_field :title, :required => true %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <p>Creator: <input type="text" disabled value="<%= @album.creator.username %>"</input></p>
+  <%= f.submit "Update" %>
+<% end %>
+
+<%= button_to "DELETE ALBUM", @album, method: :delete %>
+
