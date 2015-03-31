@@ -73,8 +73,6 @@ class AlbumsController < ApplicationController
   def update
     @album = Album.find_by(id: params[:id])
     @album.update_attributes(album_params)
-    puts params
-    puts "UPDATE!!!!"
     if @album.save
       render partial: "header"
     else
