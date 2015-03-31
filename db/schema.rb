@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150329204712) do
   create_table "albums", force: :cascade do |t|
     t.string   "title",                       null: false
     t.text     "description"
-    t.string   "vanity_url",                  null: false
+    t.string   "vanity_url"
     t.integer  "creator_id"
     t.string   "password"
     t.datetime "created_at",                  null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150329204712) do
 
   create_table "images", force: :cascade do |t|
     t.text     "caption"
-    t.string   "location",        null: false
+    t.string   "location"
     t.integer  "album_id",   null: false
     t.integer  "owner_id",   null: false
     t.datetime "created_at", null: false

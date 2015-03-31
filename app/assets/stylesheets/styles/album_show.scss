@@ -43,3 +43,21 @@
   }
 }
 
+.clearing-container {
+  .clearing-close {
+    color: $light-purple;
+    font-size: 3em;
+  }
+
+  .clearing-close:hover {
+    color: $med-blue;
+  }
+
+  .clearing-caption {
+    font-size: 1em;
+    background: rgba(0, 0, 0, 0.7);
+    padding-top: 0em;
+    padding-bottom: 0em;
+  }
+}
+
