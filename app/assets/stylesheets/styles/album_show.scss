@@ -11,6 +11,10 @@
     background-color: $light-purple;
     margin: 0;
     min-width: 100%;
+
+    .row {
+      margin-bottom: -0.7em;
+    }
   }
 
   a {
