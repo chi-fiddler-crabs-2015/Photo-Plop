@@ -4,12 +4,14 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'application#index'
+  get 'about' => 'application#about'
 
   get '/login' => 'auth#new'
+  get '/auth/:provider/callback', to: 'auth#create'
   post '/login' => 'auth#login'
   get '/logout' => 'auth#logout'
 
-  resources :users
+  resources :users, except: :index
   resources :albums do
     resources :images do
     end

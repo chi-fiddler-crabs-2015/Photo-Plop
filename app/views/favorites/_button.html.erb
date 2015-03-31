@@ -7,3 +7,20 @@
   <%= content_tag(:a, fa_icon("heart"), href: favorites_path, params: "user=#{current_user.id}&album=#{@album.id}" ) %>
 <% end %>
 
+<<<<<<< HEAD
+<%
+  content_tag(
+    :a,
+    fa_icon("heart"),
+    href: favorites_path
+  )
+
+%>
+
+<%= link_to(favorites_path) do %>
+  <%= content_tag(:i, class: "btn", id: "continue") do %>
+    <%= image_tag('img_blank.png', alt: "Continue") %>
+  <% end %>
+<% end %>
+=======
+>>>>>>> development
