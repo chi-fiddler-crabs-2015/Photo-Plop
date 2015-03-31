@@ -1,14 +1,14 @@
 $(document).ready(function() {
 
-  $(document).on('submit', '#favorite-button', function(e) {
+  $(document).on('click', '#favorite-button-container a', function(e) {
     e.preventDefault();
     form = $(this)
     $.ajax({
-      url: form.attr('action'),
+      url: form.attr('href'),
       method: form.attr('method'),
-      data: form.serialize(),
+      data: form.attr('params'),
       success: function(response) {
-        $('#favorite-button-container').html(response);
+        $('#favorite-button-container').html(response)
       }
     })
 
