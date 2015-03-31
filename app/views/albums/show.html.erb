@@ -8,7 +8,7 @@
       <p>Creator: <%= @album.creator.username %></p>
     </div>
 
-    <div class="small-3 medium-2 large-2 columns">
+    <div class="small-3 medium-2 large-2 columns four-buttons">
       <div class="row">
         <span id="upload-photo-box">
           <%= link_to raw("<i class=\"fa fa-plus-square\"></i>"), new_album_image_path(@album.id), remote: true, id: "upload_button" %>
