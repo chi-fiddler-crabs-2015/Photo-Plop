@@ -31,6 +31,20 @@ RSpec.describe ImagesController, type: :controller do
     end
   end
 
+  context 'POST #auth' do
+    let(:album) { create(:album, creator: user, vanity_url: 'asldkfj234', write_privilege: 2, password: 'dbc') }
+    it 'renders new partial if proper password is attached' do
+      post :auth, {album_id: album.id, album: {password: 'dbc'}}
+      expect(response).to render_template("images/_new")
+    end
+
+    it 'redirects back if wrong password is attached' do
+      @request.env['HTTP_REFERER'] = '/albums'
+      post :auth, {album_id: album.id, album: {password: 'dbc123'}}
+      expect(response).to redirect_to albums_path
+    end
+  end
+
   context 'GET #show' do
     it 'assigns @image to current image' do
       get :show, { album_id: album.id, id: image.id}
