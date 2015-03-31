@@ -3,6 +3,10 @@
   font-family: $body-font;
   min-height: 60em;
 
+  #album-show-title p{
+    line-height: 120%;
+  }
+
   .row {
     background-color: $light-purple;
     margin: 0;
