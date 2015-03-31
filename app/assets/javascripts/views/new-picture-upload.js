@@ -6,7 +6,7 @@ $(document).ready(function() {
       url: form.attr('href'),
       method: "get",
       success: function(response) {
-        $('#upload-photo-box').append(response);
+        $('#to_append_to').html(response);
       }
     })
   })
@@ -18,7 +18,7 @@ $(document).ready(function() {
       method: form.attr('method'),
       data: form.serialize(),
       success: function(response) {
-        $('#upload-photo-box').html(response);
+        $('#to_append_to').html(response);
       }
     })
   })
