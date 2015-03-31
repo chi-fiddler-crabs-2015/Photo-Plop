@@ -12,4 +12,12 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
+  context '#logged_in?' do
+    it 'returns a boolean' do
+      app = ApplicationController.new
+      allow(app).to receive(:current_user).and_return(true)
+      expect(app.logged_in?).to eq true
+    end
+  end
+
 end
