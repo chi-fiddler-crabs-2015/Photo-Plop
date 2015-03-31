@@ -15,3 +15,9 @@
   )
 
 %>
+
+<%= link_to(favorites_path) do %>
+  <%= content_tag(:i, class: "btn", id: "continue") do %>
+    <%= image_tag('img_blank.png', alt: "Continue") %>
+  <% end %>
+<% end %>

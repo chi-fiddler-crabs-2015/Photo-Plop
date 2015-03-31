@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329204712) do
+ActiveRecord::Schema.define(version: 20150331161856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150329204712) do
   create_table "albums", force: :cascade do |t|
     t.string   "title",                       null: false
     t.text     "description"
-    t.string   "vanity_url",                  null: false
+    t.string   "vanity_url"
     t.integer  "creator_id"
     t.string   "password"
     t.datetime "created_at",                  null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150329204712) do
 
   create_table "images", force: :cascade do |t|
     t.text     "caption"
-    t.string   "url",        null: false
+    t.string   "location"
     t.integer  "album_id",   null: false
     t.integer  "owner_id",   null: false
     t.datetime "created_at", null: false
@@ -78,6 +78,10 @@ ActiveRecord::Schema.define(version: 20150329204712) do
     t.string   "password_hash", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "secret"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", using: :btree

@@ -21,4 +21,26 @@ class User < ActiveRecord::Base
     @_user if @_user && @_user.password == user[:password]
   end
 
+  def self.find_or_create_from_auth_hash(auth_hash)
+    if existing_user = where("lower(username) = ?", auth_hash[:info][:nickname].downcase).first
+      existing_user.update(
+        provider: auth_hash[:provider],
+        uid: auth_hash[:uid],
+        token: auth_hash[:credentials][:token],
+        secret: auth_hash[:credentials][:secret]
+      )
+      return existing_user
+    else
+      new_user = create(
+        username: auth_hash[:info][:nickname],
+        email: auth_hash[:info][:email],
+        password: auth_hash[:uid],
+        provider: auth_hash[:provider],
+        uid: auth_hash[:uid],
+        token: auth_hash[:credentials][:token],
+        secret: auth_hash[:credentials][:secret]
+      )
+      return new_user
+    end
+  end
 end
