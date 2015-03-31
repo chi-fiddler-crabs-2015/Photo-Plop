@@ -1,17 +1,9 @@
 
 <% if @favorite.nil? %>
-  <%= content_tag(:a, fa_icon("heart-o"), href: favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true } ) %>
+  <%= content_tag(:a, fa_icon("heart-o"), href: favorites_path, params: "user=#{current_user.id}&album=#{@album.id}" ) %>
 <% elsif @favorite.favorite == false %>
-  <%= content_tag(:a, fa_icon("heart-o"), href: favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true } ) %>
+  <%= content_tag(:a, fa_icon("heart-o"), href: favorites_path, params: "user=#{current_user.id}&album=#{@album.id}" ) %>
 <% else %>
-  <%= content_tag(:a, fa_icon("heart"), href: favorites_path, params: {user: current_user, album: @album}, form: { id: "favorite-button", remote: true } ) %>
+  <%= content_tag(:a, fa_icon("heart"), href: favorites_path, params: "user=#{current_user.id}&album=#{@album.id}" ) %>
 <% end %>
 
-<%
-  content_tag(
-    :a,
-    fa_icon("heart"),
-    href: favorites_path
-  )
-
-%>
