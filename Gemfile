@@ -33,13 +33,14 @@ gem 'figaro'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'puma'
+gem 'thin'
 
 # Gems for websocket things? do we need?
 # gem 'private_pub'
 # gem 'puma'
 
 gem 'ffaker'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'rspec'

@@ -26,7 +26,7 @@ class AlbumsController < ApplicationController
     if album.read_authenticate(current_user, params[:album][:password])
       redirect_to album_path(album)
     else
-      @errors = "You entered an incorrect password"
+      flash[:alert] = "You entered an incorrect password"
       redirect_to :back
     end
   end
@@ -39,7 +39,7 @@ class AlbumsController < ApplicationController
         redirect_to album_path(new_album)
       else
         @errors = new_album.errors
-        render :'new'
+        render :new
       end
   end
 
@@ -67,17 +67,19 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = Album.find_by(id: params[:id])
+    render partial: "edit"
   end
 
   def update
-    album = Album.find_by(id: params[:id])
-    album.update_attributes(album_params)
-
-    if album.save
-      redirect_to album_path(album)
+    @album = Album.find_by(id: params[:id])
+    @album.update_attributes(album_params)
+    puts params
+    puts "UPDATE!!!!"
+    if @album.save
+      render partial: "header"
     else
-      @errors = album.errors
-      render :edit
+      @errors = @album.errors
+      render partial: "edit"
     end
   end
 
@@ -86,6 +88,9 @@ class AlbumsController < ApplicationController
     if album.owner?(current_user)
       album.destroy
       redirect_to albums_path
+    else
+      @errors = "You don't have permission to delete this!"
+      redirect_to :back
     end
   end
 
