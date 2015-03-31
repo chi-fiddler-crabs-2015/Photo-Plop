@@ -45,6 +45,10 @@ RSpec.describe ImagesController, type: :controller do
     end
   end
 
+  context 'POST #create' do
+
+  end
+
   context 'GET #show' do
     it 'assigns @image to current image' do
       get :show, { album_id: album.id, id: image.id}
