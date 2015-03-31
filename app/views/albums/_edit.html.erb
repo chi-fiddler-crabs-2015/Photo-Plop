@@ -7,7 +7,25 @@
   <%= f.text_area :description %>
 
   <p>Creator: <input type="text" disabled value="<%= @album.creator.username %>"</input></p>
-  <%= f.submit "Update" %>
+
+    <label for="read_privilege">Who can view your album?</label>
+      <%= f.radio_button :read_privilege, "1" %>
+      <%= f.label :read_privilege, "Anyone" %>
+
+      <%= f.radio_button :read_privilege, "2" %>
+      <%= f.label :read_privilege, "Anyone with the password" %>
+
+    <label for="write privilege">Who can add images to your album?</label>
+      <%= f.radio_button :write_privilege, "1" %>
+      <%= f.label :write_privilege, "Anyone" %>
+
+      <%= f.radio_button :write_privilege, "2" %>
+      <%= f.label :write_privilege, "Anyone with the password" %>
+
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+
+    <%= f.submit "Update" %>
 <% end %>
 
 <%= button_to "DELETE ALBUM", @album, method: :delete %>
