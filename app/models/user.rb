@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :collaborators_albums, foreign_key: :collaborator_id
   has_many :images, foreign_key: :owner_id
   has_many :favorites, :dependent => :destroy
+  has_many :identities
 
   validates :email, :password_hash, presence: true
   validates :email, :username, uniqueness: { case_sensitive: true }
@@ -22,8 +23,9 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_from_auth_hash(auth_hash)
+    puts auth_hash[:info]
     if existing_user = where("lower(username) = ?", auth_hash[:info][:nickname].downcase).first
-      existing_user.update(
+      existing_user.identities.find_or_create_by(
         provider: auth_hash[:provider],
         uid: auth_hash[:uid],
         token: auth_hash[:credentials][:token],
@@ -33,8 +35,9 @@ class User < ActiveRecord::Base
     else
       new_user = create(
         username: auth_hash[:info][:nickname],
-        email: auth_hash[:info][:email],
-        password: auth_hash[:uid],
+        email: "#{auth_hash[:info][:nickname]}@#{auth_hash[:provider]}.com",
+        password: auth_hash[:uid])
+      new_user.identities.create(
         provider: auth_hash[:provider],
         uid: auth_hash[:uid],
         token: auth_hash[:credentials][:token],
