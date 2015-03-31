@@ -87,6 +87,29 @@ RSpec.describe AlbumsController, type: :controller do
     end
   end
 
+  context 'GET #show' do
+    it 'assigns @album to current album' do
+      get :show, { id: album.id }
+      expect(assigns(:album)).to eq album
+    end
+
+    it 'assigns @favorite if user favorited album' do
+      get :show, { id: album.id }
+      expect(assigns(:favorite)).to eq nil
+    end
+
+    it 'renders show if user has correct read_privilege' do
+      get :show, { id: album.id }
+      expect(response).to render_template "show"
+    end
+
+    it 'renders password prompt withour correct read_privilege' do
+      album = create(:album, read_privilege: 2)
+      get :show, { id: album.id }
+      expect(response).to render_template "prompt_for_password"
+    end
+  end
+
   context 'GET #edit' do
     it 'assigns @album to the current album' do
       get :edit, { id: album }
