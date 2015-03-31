@@ -1,21 +1,20 @@
-<!-- this is a partial, a box that pops up over an album -->
-<!-- can pick img on device or upload from url -->
-<!-- can select multiple images -->
-<!-- can X out of this partial to cancel uploading images to this album -->
+<div class="new-image">
+	<%= cloudinary_js_config %>
 
-<%= cloudinary_js_config %>
+	<%= form_for :image, id: "upload-form", url: album_images_path, html: { multipart: true } do |f| %>
+		<fieldset>
+			<legend>Plop an Image</legend>
+		  <%= render "shared/errors" %>
 
-<%= form_for :image, id: "upload-form", url: album_images_path, html: { multipart: true } do |f| %>
-  <%= render "shared/errors" %>
+		  <%= f.file_field(:image_url) %>
 
-  <%= f.file_field(:image_url) %>
-  -or-
+		  <label for="direct_url">Image Url</label>
+		  <input type="text" name="image[direct_url]" id="direct_url">
 
-  <label for="direct_url">Image Url</label>
-  <input type="text" name="image[direct_url]" id="direct_url">
+		  <%= f.label :caption %>
+		  <%= f.text_field :caption %>
 
-  <%= f.label :caption %>
-  <%= f.text_field :caption %>
-
-  <%= f.submit "Upload" %>
-<% end %>
+		  <%= f.submit "Upload" %>
+		</fieldset>
+	<% end %>
+</div>

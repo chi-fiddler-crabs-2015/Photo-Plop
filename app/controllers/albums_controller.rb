@@ -67,17 +67,17 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = Album.find_by(id: params[:id])
+    render partial: "edit"
   end
 
   def update
-    album = Album.find_by(id: params[:id])
-    album.update_attributes(album_params)
-
-    if album.save
-      redirect_to album_path(album)
+    @album = Album.find_by(id: params[:id])
+    @album.update_attributes(album_params)
+    if @album.save
+      render partial: "header"
     else
-      @errors = album.errors
-      render :edit
+      @errors = @album.errors
+      render partial: "edit"
     end
   end
 

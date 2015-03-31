@@ -1,0 +1,13 @@
+.album_edit {
+	.img-tile {
+    padding: 0;
+
+    form {
+      position: absolute;
+
+      input[type="submit"] {
+        color: red;
+      }
+    }
+  }
+}

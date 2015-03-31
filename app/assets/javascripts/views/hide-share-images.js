@@ -1,5 +1,6 @@
 $(document).ready(function() {
   $("#share-button").on('click', function() {
-    $('#share-url-container').toggle();
+    debugger;
+    $('#share-url-container').show();
   })
 })

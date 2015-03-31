@@ -45,10 +45,4 @@ class ImagesController < ApplicationController
     redirect_to album_path(params[:album_id])
   end
 
-  private
-
-  def image_params
-    params.require(:image).permit(:caption )
-  end
-
 end

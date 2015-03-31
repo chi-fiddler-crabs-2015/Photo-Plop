@@ -31,6 +31,20 @@ RSpec.describe AlbumsController, type: :controller do
     end
   end
 
+  context 'POST #auth' do
+    let(:album) { create(:album, creator: user, vanity_url: 'asldkfj234', read_privilege: 2, password: 'dbc') }
+    it 'renders new partial if proper password is attached' do
+      post :auth, {album_id: album.id, album: {password: 'dbc'}}
+      expect(response).to redirect_to album_path(album)
+    end
+
+    it 'redirects back if wrong password is attached' do
+      @request.env['HTTP_REFERER'] = '/albums'
+      post :auth, {album_id: album.id, album: {password: 'dbc123'}}
+      expect(response).to redirect_to albums_path
+    end
+  end
+
   context 'POST #create' do
     describe "when valid params are passed" do
       it 'creates a new album' do
@@ -58,10 +72,69 @@ RSpec.describe AlbumsController, type: :controller do
     end
   end
 
+  context 'GET #vanity' do
+    it 'redirects to an album if vanity url is valid' do
+      album = create(:album, vanity_url: 'a')
+      expect(
+        get :vanity, {vanity_url: 'a'}
+      ).to redirect_to album_path(album.id)
+    end
+
+    it 'redirects to root path' do
+      expect(
+        get :vanity, {vanity_url: 'lkajsdflku09238'}
+      ).to redirect_to root_path
+    end
+  end
+
+  context 'GET #show' do
+    it 'assigns @album to current album' do
+      get :show, { id: album.id }
+      expect(assigns(:album)).to eq album
+    end
+
+    it 'assigns @favorite if user favorited album' do
+      get :show, { id: album.id }
+      expect(assigns(:favorite)).to eq nil
+    end
+
+    it 'renders show if user has correct read_privilege' do
+      get :show, { id: album.id }
+      expect(response).to render_template "show"
+    end
+
+    it 'renders password prompt withour correct read_privilege' do
+      album = create(:album, read_privilege: 2)
+      get :show, { id: album.id }
+      expect(response).to render_template "prompt_for_password"
+    end
+  end
+
   context 'GET #edit' do
     it 'assigns @album to the current album' do
       get :edit, { id: album }
       expect(assigns(:album)).to eq album
+    end
+  end
+
+  context 'PUT #update' do
+    it 'assigns @album to current album' do
+      put :update, { id: album, album: {title: 'hi'} }
+      expect(assigns(:album)).to eq album
+    end
+
+    it 'changes attributes when passed valid updates' do
+      album = create(:album)
+      expect{
+        put :update, { id: album.id, album: { title: 'hi'} }
+      }.to change{Album.find(album.id).title}
+    end
+
+    it 'doesnt change when invalid attributes are passed' do
+      album = create(:album)
+      expect{
+        put :update, { id: album.id, album: { loud: 'hi'} }
+      }.not_to change{Album.find(album.id).title}
     end
   end
 
