@@ -1,10 +1,9 @@
 
-<<<<<<< HEAD
 <ul class="clearing-thumbs small-block-grid-3 medium-block-grid-5 large-block-grid-6">
-    <% @html[:ImgResults].each_with_index do | img, count | %>
+    <% @instaInfo[:ImgResults].each_with_index do | img, count | %>
       <li class="img-tile">
 
-      <%= form_for :image, id: "upload-form-instagram", mehtod: 'post', url: album_images_path(@html[:album].id) do |f| %>
+      <%= form_for :image, id: "upload-form-instagram", mehtod: 'post', url: album_images_path(@instaInfo[:album].id) do |f| %>
 
         <%= f.hidden_field :location, value: img  %>
 
@@ -13,15 +12,8 @@
 
       <%= f.submit "+" %>
   <% end %>
-        <%= link_to image_tag(img, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb, :data => {:caption => "#{@html[:TagName]}  #{count +1}"}) %>
-=======
-<ul class="clearing-thumbs small-block-grid-3 medium-block-grid-5 large-block-grid-6" data-clearing>
-    <% @instaInfo[:ImgResults].each_with_index do | img, count | %>
-      <li class="img-tile">
-        <%= button_to '+', {:controller => :images,
-        :action => 'create', album_id: @instaInfo[:album].id, :owner => current_user }, :class => "fa fa-plus",  :method => :post %>
         <%= link_to image_tag(img, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb, :data => {:caption => "#{@instaInfo[:TagName]}  #{count +1}"}) %>
->>>>>>> a82981b0e5d5363ca8ea7f8215a87e1cf0454b3a
+
       </li>
     <% end %>
   </ul>
