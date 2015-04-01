@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20150401020009) do
     t.string   "password_hash", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.boolean  "guest",   default: false
   end
 
   add_index "users", ["username"], name: "index_users_on_username", using: :btree

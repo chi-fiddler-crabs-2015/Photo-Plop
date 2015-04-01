@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_from_auth_hash(auth_hash)
-    puts auth_hash[:info]
     if existing_user = where("lower(username) = ?", auth_hash[:info][:nickname].downcase).first
       existing_user.identities.find_or_create_by(
         provider: auth_hash[:provider],
@@ -36,7 +35,8 @@ class User < ActiveRecord::Base
       new_user = create(
         username: auth_hash[:info][:nickname],
         email: "#{auth_hash[:info][:nickname]}@#{auth_hash[:provider]}.com",
-        password: auth_hash[:uid])
+        password: auth_hash[:uid]
+      )
       new_user.identities.create(
         provider: auth_hash[:provider],
         uid: auth_hash[:uid],
@@ -45,5 +45,13 @@ class User < ActiveRecord::Base
       )
       return new_user
     end
+  end
+
+  def self.new_guest
+    new { |u| u.guest = true }
+  end
+
+  def name
+    guest ? "Guest" : username
   end
 end
