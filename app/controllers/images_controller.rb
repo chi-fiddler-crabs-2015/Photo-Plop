@@ -22,11 +22,14 @@ class ImagesController < ApplicationController
   end
 
   def create
+    if ( params[:image][:image_url] || params[:image][:direct_url] )
+      cloudinary_hash = Cloudinary::Uploader.upload(params[:image][:image_url] || params[:image][:direct_url])
 
-    cloudinary_hash = Cloudinary::Uploader.upload(params[:image][:image_url] || params[:image][:direct_url])
-
-    @new_image = Album.find(params[:album_id]).images.new(caption: params[:image][:caption], owner: current_user)
-    @new_image.location = cloudinary_hash["url"]
+      @new_image = Album.find(params[:album_id]).images.new(caption: params[:image][:caption], owner: current_user)
+      @new_image.location = cloudinary_hash["url"]
+    else
+      @new_image = Album.find(params[:album_id]).images.new(caption: params[:image][:caption], owner: current_user, location: params[:image][:location])
+    end
 
     if @new_image.save
       redirect_to album_path(@new_image.album.id)
