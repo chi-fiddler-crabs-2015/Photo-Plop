@@ -1,0 +1,43 @@
+.pass-prompt{
+	background-color: $gray;
+  font-family: $body-font;
+  min-height: 60em;
+
+  label {
+  	color: black;
+  	font-size: 1em;
+  }
+
+  	input[type="submit"] {
+		color: $dark-purple;
+		background-color: $light-purple;
+		font-size: 1em;
+	}
+
+	input[type="submit"]:hover {
+		color: $light-purple;
+		background-color: $dark-purple;
+	}
+}
+
+.pass-prompt-partial {
+	background-color: $light-purple;
+	font-family: $body-font;
+  min-height: 60em;
+
+  label {
+  	color: black;
+  	font-size: 1em;
+  }
+
+  input[type="submit"]:hover {
+		color: $dark-purple;
+		background-color: $light-purple;
+	}
+
+	input[type="submit"] {
+		color: $light-purple;
+		background-color: $dark-purple;
+		font-size: 1em;
+	}
+}

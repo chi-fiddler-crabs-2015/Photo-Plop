@@ -17,7 +17,7 @@
 		  <%= f.submit "Upload" %>
 	<% end %>
 
-	<% unless @album.tag.nil? %>
+<% unless @album.tag.nil? %>
 		<% if @album.tag.length > 0 %>
 			<%= button_to "Search Instagram for Images with Tag: #{@album.tag}", search_path(@album.tag),  method: :get %>
 		<% end %>

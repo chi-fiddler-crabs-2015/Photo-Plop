@@ -9,10 +9,12 @@
       <p>Description: <%= @album.description %></p>
       <p>Creator: <%= @album.creator.username %></p>
       <p>Album Tag:
-        <% if @album.tag %>
-          #<%= @album.tag %>
-        <% else %>
+        <% if @album.tag.nil? %>
           (none)
+        <% elsif @album.tag.length == 0 %>
+          (none)
+        <% else %>
+          #<%= @album.tag %>
         <% end %>
     </div>
 
@@ -51,14 +53,14 @@
   <div class="row"><div class="small-9 medium-6 large-4 columns" id="to_append_to">
   </div></div>
 
-  <ul class="clearing-thumbs small-block-grid-3 medium-block-grid-5 large-block-grid-6" data-clearing>
+  <ul class="clearing-thumbs small-block-grid-3 medium-block-grid-5 large-block-grid-8" data-clearing>
     <% @album.images.each do |image| %>
        <li class="img-tile">
         <% if image.owner?(current_user) || @album.owner?(current_user) %>
           <%= button_to "X", {:controller => :images,
           :action => 'destroy', album_id: @album.id, :id => image.id }, :class => "button",  :method => :delete, data: { confirm: "Are you sure?" } %>
          <% end %>
-        <%= link_to image_tag(image.location, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb, :data => {:caption => "#{image.caption} (Uploaded by #{image.owner.username})"}), image.location %>
+        <%= link_to image_tag(image.location, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb, :angle => :exif, :data => {:caption => "#{image.caption} (Uploaded by #{image.owner.username})"}), image.location %>
       </li>
     <% end %>
   </ul>
