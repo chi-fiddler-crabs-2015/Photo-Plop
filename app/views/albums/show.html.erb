@@ -47,7 +47,7 @@
        <li class="img-tile">
         <% if image.owner?(current_user) %>
           <%= button_to "X", {:controller => :images,
-          :action => 'destroy', album_id: @album.id, :id => image.id }, :class => "fa fa-trash-o",  :method => :delete %>
+          :action => 'destroy', album_id: @album.id, :id => image.id }, :class => "button",  :method => :delete %>
          <% end %>
         <%= link_to image_tag(image.location, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb, :data => {:caption => "#{image.caption} (Uploaded by #{image.owner.username})"}), image.location %>
       </li>
