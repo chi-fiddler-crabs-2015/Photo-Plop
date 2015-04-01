@@ -20,9 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_logged_in
-    unless current_user
-      redirect_to root_path
-    end
+    current_user.guest
   end
 
   # def group

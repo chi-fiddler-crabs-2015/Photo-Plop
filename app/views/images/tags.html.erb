@@ -1,0 +1,10 @@
+
+<ul class="clearing-thumbs small-block-grid-3 medium-block-grid-5 large-block-grid-6" data-clearing>
+    <% @instaInfo[:ImgResults].each_with_index do | img, count | %>
+      <li class="img-tile">
+        <%= button_to '+', {:controller => :images,
+        :action => 'create', album_id: @instaInfo[:album].id, :owner => current_user }, :class => "fa fa-plus",  :method => :post %>
+        <%= link_to image_tag(img, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb, :data => {:caption => "#{@instaInfo[:TagName]}  #{count +1}"}) %>
+      </li>
+    <% end %>
+  </ul>

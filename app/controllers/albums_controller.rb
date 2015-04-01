@@ -32,7 +32,9 @@ class AlbumsController < ApplicationController
   end
 
   def create
+    puts album_params
       new_album = current_user.albums.new(album_params)
+      new_album.vanity_url = album_params[:tag] if album_params[:tag] && Album.find_by(tag: album_params[:tag]).nil?
       if new_album.save
         album_user_params = {user: current_user, album: new_album}.merge(auth_params)
         AlbumsUser.create(album_user_params)
@@ -95,7 +97,7 @@ class AlbumsController < ApplicationController
   private
 
   def album_params
-    params.require(:album).permit(:title, :description, :vanity_url, :password, :read_privilege, :write_privilege)
+    params.require(:album).permit(:title, :description, :vanity_url, :password, :read_privilege, :write_privilege, :tag)
   end
 
   def auth_params
