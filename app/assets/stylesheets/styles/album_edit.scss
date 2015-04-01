@@ -1,13 +1,27 @@
 .album_edit {
-	.img-tile {
-    padding: 0;
+	.big-label {
+		font-size: 1.3em;
+	}
 
-    form {
-      position: absolute;
+	label {
+		color: black;
+		font-size: 1.1em;
 
-      input[type="submit"] {
-        color: red;
-      }
-    }
-  }
+	}
+
+	input[type="submit"]:hover {
+		color: $dark-purple;
+		background-color: $light-purple;
+	}
+
+	input[type="submit"] {
+		color: $light-purple;
+		background-color: $dark-purple;
+		font-size: 1em;
+		display: block;
+		margin-bottom: 1em;
+		border: none;
+
+	}
+
 }
