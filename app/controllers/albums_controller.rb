@@ -32,15 +32,17 @@ class AlbumsController < ApplicationController
   end
 
   def create
-      new_album = current_user.albums.new(album_params)
-      if new_album.save
-        album_user_params = {user: current_user, album: new_album}.merge(auth_params)
-        AlbumsUser.create(album_user_params)
-        redirect_to album_path(new_album)
-      else
-        @errors = new_album.errors
-        render :new
-      end
+    puts album_params
+      # new_album = current_user.albums.new(album_params)
+      #  album_params[:tag] if album_params[:tag].exists? &&
+      # if new_album.save
+      #   album_user_params = {user: current_user, album: new_album}.merge(auth_params)
+      #   AlbumsUser.create(album_user_params)
+      #   redirect_to album_path(new_album)
+      # else
+      #   @errors = new_album.errors
+      #   render :new
+      # end
   end
 
   def vanity
