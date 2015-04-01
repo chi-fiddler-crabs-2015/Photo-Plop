@@ -1,5 +1,17 @@
 <% if @album.images.first %>
-  <li><a href='<%= album_path(@album) %>'><h2><%= @album.title %></h2><%= image_tag(@album.images.first.location, :type => "fetch", :width => 200, :height => 200, :crop => :thumb) %><h3><%= @album.images.count %> images</h3></a></li>
+  <li class="album-tile">
+    <a href='<%= album_path(@album) %>'>
+      <h3 class="img-count"><%= @album.images.count %></h3>
+      <%= image_tag(@album.images.first.location, :type => "fetch", :width => 500, :height => 500, :crop => :thumb) %>
+      <h2><span class="title"><%= @album.title %></span></h2>
+    </a>
+  </li>
   <% else %>
-    <li><%= link_to "#{@album.title} #{@album.images.count} images", album_path(@album) %></li>
+  <li class="album-tile">
+    <a href='<%= album_path(@album) %>'>
+      <h3 class="img-count"><%= @album.images.count %></h3>
+      <%= image_tag("photoplop_placeholder.png", :width => 500, :height => 500) %>
+      <h2><span class="title"><%= @album.title %></span></h2>
+    </a>
+  </li>
 <% end %>

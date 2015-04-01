@@ -1,0 +1,31 @@
+.album_edit {
+	.big-label {
+		font-size: 1.3em;
+	}
+
+	label {
+		color: black;
+		font-size: 1em;
+
+	}
+
+	.long-label {
+		white-space: nowrap;
+	}
+
+	input[type="submit"]:hover {
+		color: $dark-purple;
+		background-color: $light-purple;
+	}
+
+	input[type="submit"] {
+		color: $light-purple;
+		background-color: $dark-purple;
+		font-size: 1em;
+		display: block;
+		margin-bottom: 1em;
+		border: none;
+
+	}
+
+}

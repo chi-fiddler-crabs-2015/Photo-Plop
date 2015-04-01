@@ -1,0 +1,23 @@
+.main-section {
+  min-height: 40em;
+}
+
+.tab-bar {
+  background-color: $dark-purple;
+
+  img {
+    max-height: 35px;
+    padding-bottom: 0.2 em;
+  }
+
+}
+
+.right-off-canvas-menu {
+  background-color: $med-purple;
+  font-family: $body-font;
+
+  a {
+    color: $gray;
+    font-size: 1.5em;
+  }
+}

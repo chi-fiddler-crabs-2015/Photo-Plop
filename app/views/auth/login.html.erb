@@ -1,22 +1,30 @@
-<section class="intro_blurb">
-  <%= image_tag("Photoplop_Logo.png", size: "350x150", alt: "photoplop logo") %>
-  <h3>Snap It. Plop It. Share It.</h3>
-  <p>Build photo albums with your <%= group %>. </p>
-</section>
+<div class="login">
+	<section class="intro_blurb">
+	  <%= image_tag("Photoplop_Logo.png", size: "350x150", alt: "photoplop logo") %>
+	  <h3>Snap It. Plop It. Share It.</h3>
+	  <p>Build photo albums with your <%= group %>. </p>
+	</section>
 
-<h1>LOGIN</h1>
-<% if flash[:alert] %>
-  <h3 class="alert"> <%=flash[:alert] %> </h3>
-<% end %>
-<%= form_for :user do |f| %>
+	<span class="login-form small-12 medium-6 large-6 columns">
+		<% if flash[:alert] %>
+		  <h3 class="alert"> <%=flash[:alert] %> </h3>
+		<% end %>
+		<%= form_for :user do |f| %>
 
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+		  <%= f.label :username %>
+		  <%= f.text_field :username %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+		  <%= f.label :password %>
+		  <%= f.password_field :password %>
 
-  <%= f.submit "Log In" %>
-<% end %>
+		  <%= f.submit "Log In" %>
+		<% end %>
 
-Not a user yet? <%= link_to "Create Account", new_user_path %>
+		<%= link_to "Create Account", new_user_path, :class => "button" %>
+
+
+		<%= link_to raw("<i class=\"fa fa-instagram\"></i> Login with Instagram"), '/auth/instagram', :class => "button" %>
+		<%= link_to raw("<i class=\"fa fa-twitter\"></i> Login with Twitter"), '/auth/twitter', :class => "button" %>
+
+	</span>
+</div>

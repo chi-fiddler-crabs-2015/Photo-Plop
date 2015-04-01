@@ -26,20 +26,22 @@ class AlbumsController < ApplicationController
     if album.read_authenticate(current_user, params[:album][:password])
       redirect_to album_path(album)
     else
-      @errors = "You entered an incorrect password"
+      flash[:alert] = "You entered an incorrect password"
       redirect_to :back
     end
   end
 
   def create
+    puts album_params
       new_album = current_user.albums.new(album_params)
+      new_album.vanity_url = album_params[:tag] if album_params[:tag] && Album.find_by(tag: album_params[:tag]).nil?
       if new_album.save
         album_user_params = {user: current_user, album: new_album}.merge(auth_params)
         AlbumsUser.create(album_user_params)
         redirect_to album_path(new_album)
       else
         @errors = new_album.errors
-        render :'new'
+        render :new
       end
   end
 
@@ -67,17 +69,17 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = Album.find_by(id: params[:id])
+    render partial: "edit"
   end
 
   def update
-    album = Album.find_by(id: params[:id])
-    album.update_attributes(album_params)
-
-    if album.save
-      redirect_to album_path(album)
+    @album = Album.find_by(id: params[:id])
+    @album.update_attributes(album_params)
+    if @album.save
+      render partial: "header"
     else
-      @errors = album.errors
-      render :edit
+      @errors = @album.errors
+      render partial: "edit"
     end
   end
 
@@ -86,13 +88,16 @@ class AlbumsController < ApplicationController
     if album.owner?(current_user)
       album.destroy
       redirect_to albums_path
+    else
+      @errors = "You don't have permission to delete this!"
+      redirect_to :back
     end
   end
 
   private
 
   def album_params
-    params.require(:album).permit(:title, :description, :vanity_url, :password, :read_privilege, :write_privilege)
+    params.require(:album).permit(:title, :description, :vanity_url, :password, :read_privilege, :write_privilege, :tag)
   end
 
   def auth_params

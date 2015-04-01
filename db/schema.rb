@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329204712) do
+ActiveRecord::Schema.define(version: 20150401020009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150329204712) do
     t.datetime "updated_at",                  null: false
     t.integer  "read_privilege",  default: 1
     t.integer  "write_privilege", default: 1
+    t.string   "tag"
   end
 
   add_index "albums", ["creator_id"], name: "index_albums_on_creator_id", using: :btree
@@ -60,6 +61,14 @@ ActiveRecord::Schema.define(version: 20150329204712) do
   add_index "favorites", ["album_id"], name: "index_favorites_on_album_id", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
+  create_table "identities", force: :cascade do |t|
+    t.string  "provider"
+    t.string  "uid"
+    t.string  "token"
+    t.string  "secret"
+    t.integer "user_id"
+  end
+
   create_table "images", force: :cascade do |t|
     t.text     "caption"
     t.string   "location"
@@ -73,11 +82,12 @@ ActiveRecord::Schema.define(version: 20150329204712) do
   add_index "images", ["owner_id"], name: "index_images_on_owner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",      null: false
-    t.string   "email",         null: false
-    t.string   "password_hash", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "username",                      null: false
+    t.string   "email",                         null: false
+    t.string   "password_hash",                 null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "guest",         default: false
   end
 
   add_index "users", ["username"], name: "index_users_on_username", using: :btree

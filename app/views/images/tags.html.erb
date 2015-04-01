@@ -1,0 +1,19 @@
+
+<ul class="clearing-thumbs small-block-grid-3 medium-block-grid-5 large-block-grid-6">
+    <% @instaInfo[:ImgResults].each_with_index do | img, count | %>
+      <li class="img-tile">
+
+      <%= form_for :image, id: "upload-form-instagram", mehtod: 'post', url: album_images_path(@instaInfo[:album].id) do |f| %>
+
+        <%= f.hidden_field :location, value: img  %>
+
+        <%= f.label :caption %>
+        <%= f.text_field :caption %>
+
+      <%= f.submit "+" %>
+  <% end %>
+        <%= link_to image_tag(img, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb, :data => {:caption => "#{@instaInfo[:TagName]}  #{count +1}"}) %>
+
+      </li>
+    <% end %>
+  </ul>

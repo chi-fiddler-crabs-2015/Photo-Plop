@@ -21,7 +21,7 @@
   <div class="inner-wrap">
     <nav class="tab-bar">
       <section class="left tab-bar-section">
-        <h1 class="title"><%= link_to "photoplop", root_path %></h1>
+        <h1 class="title"><%= link_to image_tag("photoplop_color_logo.png"), root_path %></h1>
       </section>
 
       <section class="right-small">
@@ -33,10 +33,9 @@
     <aside class="right-off-canvas-menu">
       <ul class="off-canvas-list">
       <% if current_user %>
-        <li><%= link_to 'Create a New Album', new_album_path %></li>
-        <li><%= link_to 'Created', albums_path(anchor: "created") %></li>
-        <li><%= link_to 'Plopped To', albums_path(anchor: "plopped") %></li>
-        <li><%= link_to 'Liked', albums_path %></li>
+        <li><%= link_to 'New Album', new_album_path %></li>
+        <li><%= link_to 'Albums', albums_path %></li>
+
         <li><%= link_to "Logout", logout_path %></li>
 
       <% else %>

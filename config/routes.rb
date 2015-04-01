@@ -4,12 +4,14 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'application#index'
+  get 'about' => 'application#about'
 
   get '/login' => 'auth#new'
+  get '/auth/:provider/callback', to: 'auth#create'
   post '/login' => 'auth#login'
   get '/logout' => 'auth#logout'
 
-  resources :users
+  resources :users, except: :index
   resources :albums do
     resources :images do
     end
@@ -19,8 +21,9 @@ Rails.application.routes.draw do
 
   resources :collaborators_albums
   resources :favorites
+  get '/search/:tag' => 'images#tags', as: :search
 
-  get'/:vanity_url' => 'albums#vanity'
+  get'/:vanity_url' => 'albums#vanity', as: :vanity
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

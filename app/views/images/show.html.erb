@@ -6,3 +6,4 @@
 <%= cl_image_tag(@image.location) %>
 <%= @image.caption %>
 Uploaded by <%= @image.owner.username %>
+<%= link_to "back to album", album_path(@image.album.id) %>

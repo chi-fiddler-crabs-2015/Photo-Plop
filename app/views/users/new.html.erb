@@ -1,15 +1,21 @@
-<!-- has form for signup, renders erorrs from shared/errors -->
-<h1>Create an account</h1>
-<%= form_for :user, url: users_path do |f| %>
-  <%= render "shared/errors" %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+<div class="user_new small-12 medium-6 large-6 columns">
+	<h2>Create an Account</h2>
+	<%= form_for :user, url: users_path do |f| %>
+	  <%= render "shared/errors" %>
+	  <%= f.label :username %>
+	  <%= f.text_field :username %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+	  <%= f.label :email %>
+	  <%= f.email_field :email %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+	  <%= f.label :password %>
+	  <%= f.password_field :password %>
 
-  <%= f.submit "Sign Up" %>
-<% end %>
+	  <%= f.submit "Create Account" %>
+	<% end %>
+
+	<%= link_to raw("<i class=\"fa fa-instagram\"></i> Sign Up with Instagram"), '/auth/instagram', :class => "button" %>
+	<%= link_to raw("<i class=\"fa fa-twitter\"></i> Sign Up with Twitter"), '/auth/twitter', :class => "button" %>
+
+
+</div>

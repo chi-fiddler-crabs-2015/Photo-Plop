@@ -22,11 +22,14 @@ class ImagesController < ApplicationController
   end
 
   def create
+    if ( params[:image][:image_url] || params[:image][:direct_url] )
+      cloudinary_hash = Cloudinary::Uploader.upload(params[:image][:image_url] || params[:image][:direct_url])
 
-    cloudinary_hash = Cloudinary::Uploader.upload(params[:image][:image_url] || params[:image][:direct_url])
-
-    @new_image = Album.find(params[:album_id]).images.new(caption: params[:image][:caption], owner: current_user || default_user)
-    @new_image.location = cloudinary_hash["url"]
+      @new_image = Album.find(params[:album_id]).images.new(caption: params[:image][:caption], owner: current_user)
+      @new_image.location = cloudinary_hash["url"]
+    else
+      @new_image = Album.find(params[:album_id]).images.new(caption: params[:image][:caption], owner: current_user, location: params[:image][:location])
+    end
 
     if @new_image.save
       redirect_to album_path(@new_image.album.id)
@@ -43,6 +46,22 @@ class ImagesController < ApplicationController
   def destroy
     Image.find_by(id: params[:id]).destroy
     redirect_to album_path(params[:album_id])
+  end
+
+  def tags
+    client = Instagram.client(:access_token => ENV['IG_ACCESS_TOKEN'])
+    @instaInfo = Hash[]
+    puts tags = client.tag_search(params[:tag])
+    @instaInfo[:album] = Album.find_by(tag: params[:tag])
+    @instaInfo[:TagName] = tags[0].name
+    @instaInfo[:PicCount] = tags[0].media_count
+
+    puts client.tag_recent_media(tags[0].name)
+    @instaInfo[:ImgResults] = []
+    for media_item in client.tag_recent_media(tags[0].name)
+      @instaInfo[:ImgResults] << media_item.images.standard_resolution.url
+    end
+    @instaInfo
   end
 
   private

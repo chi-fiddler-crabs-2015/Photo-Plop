@@ -20,18 +20,12 @@ class ApplicationController < ActionController::Base
   end
 
   def not_logged_in
-    unless current_user
-      redirect_to root_path
-    end
+    current_user.guest
   end
 
-  def default_user
-    @_default_user ||= User.find_by(username: "Guest") if !session[:user_id]
-  end
+  # def group
+  #   ["peoples", "homies", "peeps", "friends", "compadres", "comadres", "network", "bae", "cohortmates", "family", "colleagues", "team", "frenemies", "BFFs"].sample
+  # end
 
-  def group
-    ["peoples", "homies", "peeps", "friends", "compadres", "comadres", "network", "bae", "cohortmates", "family", "colleagues", "team", "frenemies", "BFFs"].sample
-  end
-
-  helper_method :current_user, :default_user, :group
+  helper_method :current_user
 end
