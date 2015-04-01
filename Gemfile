@@ -39,6 +39,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-instagram'
 gem 'instagram'
+gem "tweet-button"
+
 gem 'thin'
 
 # Gems for websocket things? do we need?
