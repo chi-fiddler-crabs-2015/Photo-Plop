@@ -5,8 +5,12 @@
 
 	label {
 		color: black;
-		font-size: 1.1em;
+		font-size: 1em;
 
+	}
+
+	.long-label {
+		white-space: nowrap;
 	}
 
 	input[type="submit"]:hover {
