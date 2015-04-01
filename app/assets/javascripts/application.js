@@ -17,4 +17,9 @@
 //= require_tree .
 //= require_tree ./views
 
-$(function(){ $(document).foundation(); });
+$(function(){ $(document).foundation({
+	clearing: {
+		open_selectors: 'img',
+	}
+
+}); });
