@@ -6,6 +6,12 @@
       <h1><%= @album.title %></h1>
       <p>Description: <%= @album.description %></p>
       <p>Creator: <%= @album.creator.username %></p>
+      <p>Album Tag:
+        <% if @album.tag %>
+          #<%= @album.tag %>
+        <% else %>
+          (none)
+        <% end %>
     </div>
 
     <div class="small-3 medium-2 large-2 columns four-buttons">
