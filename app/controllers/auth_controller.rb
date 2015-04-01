@@ -4,9 +4,7 @@ class AuthController < ApplicationController
   end
 
   def create
-    puts auth_hash
     @user = User.find_or_create_from_auth_hash(auth_hash)
-    puts @user
     session[:user_id] = @user.id
     redirect_to albums_path
   end
