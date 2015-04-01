@@ -47,11 +47,16 @@ class ImagesController < ApplicationController
 
   def tags
     client = Instagram.client(:access_token => ENV['IG_ACCESS_TOKEN'])
-    @html = "<h1>Instagram pics with your album's Tag:</h1>"
+    @html = Hash[title: "<h1>Instagram pics with your album's Tag:</h1>"]
     tags = client.tag_search(params[:tag])
-    @html << "<h2>Tag Name = #{tags[0].name}. Pic Count =  #{tags[0].media_count}. </h2><br/><br/>"
+    @html[:album] = Album.find_by(tag: params[:tag])
+    @html[:TagName] = tags[0].name
+    @html[:PicCount] = tags[0].media_count
+
+    client.tag_recent_media(tags[0].name)
+    @html[:ImgResults] = []
     for media_item in client.tag_recent_media(tags[0].name)
-      @html << "<img src='#{media_item.images.thumbnail.url}'>"
+      @html[:ImgResults] << media_item.images.thumbnail.url
     end
     @html
   end
