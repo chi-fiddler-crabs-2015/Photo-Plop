@@ -1,34 +1,36 @@
-<h2>Create an Album</h2>
+<div class="albums-new">
+  <h2>Create an Album</h2>
 
-<%= form_for :album, url: albums_path, html: {id: 'new-album-form'} do |f| %>
-  <%= render "shared/errors" %>
-  <div class="10 columns">
-    <%= f.label :title, "Album Title" %>
-    <%= f.text_field :title, :required => true %>
+  <%= form_for :album, url: albums_path, html: {id: 'new-album-form'} do |f| %>
+    <%= render "shared/errors" %>
+    <div class="small-12 medium-6 large-6 columns">
+      <%= f.label :title, "Album Title", :class => "big-label" %>
+      <%= f.text_field :title, :required => true %>
 
-    <%= f.label :description, "Describe Your Album" %>
-    <%= f.text_area :description %>
+      <%= f.label :description, "Describe Your Album", :class => "big-label"  %>
+      <%= f.text_area :description %>
 
-    <%= f.label :tag, "Is there a hashtag related to this album?" %>
-    <%= f.text_field :tag %>
+      <%= f.label :tag, "Is there a hashtag related to this album?", :class => "big-label" %>
+      <%= f.text_field :tag %>
 
-    <label for="read_privilege">Who can view your album?</label>
-    <%= f.radio_button :read_privilege, "1" %>
-    <%= f.label :read_privilege, "Anyone" %>
+      <label for="read_privilege" class="big-label">Who can view your album?</label>
+      <%= f.radio_button :read_privilege, "1" %>
+      <%= f.label :read_privilege, "Anyone" %>
 
-    <%= f.radio_button :read_privilege, "2" %>
-    <%= f.label :read_privilege, "Anyone with the password" %>
+      <%= f.radio_button :read_privilege, "2" %>
+      <%= f.label :read_privilege, "Anyone with the password" %>
 
-    <label for="write privilege">Who can add images to your album?</label>
-    <%= f.radio_button :write_privilege, "1" %>
-    <%= f.label :write_privilege, "Anyone" %>
+      <label for="write privilege" class="big-label">Who can add images to your album?</label>
+      <%= f.radio_button :write_privilege, "1" %>
+      <%= f.label :write_privilege, "Anyone" %>
 
-    <%= f.radio_button :write_privilege, "2" %>
-    <%= f.label :write_privilege, "Anyone with the password" %>
+      <%= f.radio_button :write_privilege, "2" %>
+      <%= f.label :write_privilege, "Anyone with the password" %>
 
-    <%= f.label :password %>
-    <%= f.text_field :password %>
+      <%= f.label :password, :class => "big-label"  %>
+      <%= f.text_field :password %>
 
-    <%= f.submit "Create Your Album" %>
-  </div>
-<% end %>
+      <%= f.submit "Create Your Album", :class => "button" %>
+    </div>
+  <% end %>
+</div>

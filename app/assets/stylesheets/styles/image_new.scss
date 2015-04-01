@@ -1,0 +1,26 @@
+.new-image {
+
+	fieldset {
+		border-color: $dark-purple;
+
+		label {
+			color: black;
+		}
+	}
+
+	legend {
+		color: $light-purple;
+		background-color: $dark-purple;
+	}
+
+	input[type="submit"]:hover {
+		color: $dark-purple;
+		background-color: $light-purple;
+	}
+
+	input[type="submit"] {
+		color: $light-purple;
+		background-color: $dark-purple;
+		font-size: 1em;
+	}
+}

@@ -34,11 +34,12 @@ gem 'figaro'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'puma'
+
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-instagram'
 gem 'instagram'
+gem 'thin'
 
 # Gems for websocket things? do we need?
 # gem 'private_pub'

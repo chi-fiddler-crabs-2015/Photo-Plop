@@ -16,17 +16,17 @@ RSpec.describe UsersController, type: :controller do
 
       it "creates a new user" do
         expect { post :create, { user: { username: "test", email: "test@test.com", password: "1234567" } }
-                 }.to change{User.count}.by(1)
+        }.to change{User.count}.by(1)
 
       end
       it "starts a new session" do
         expect { post :create, { user: { username: "test", email: "test@test.com", password: "1234567" } }
-                 }.to change{session[:user_id]}
+        }.to change{session[:user_id]}
       end
 
       it "redirects user to their album index" do
         expect( post :create, { user: { username: "test", email: "test@test.com", password: "1234567" } }
-                ).to redirect_to albums_path
+          ).to redirect_to albums_path
       end
     end
 
@@ -35,7 +35,7 @@ RSpec.describe UsersController, type: :controller do
 
       it "throws an error for missing username " do
         expect { post :create, { user: { email: "test@test.com", password: "1234567" }}
-                 }.to raise_error
+        }.to raise_error
       end
 
       it "throws an error for missing email " do
@@ -49,7 +49,7 @@ RSpec.describe UsersController, type: :controller do
 
       it "throws an error for a username or email that have been taken " do
         expect { post :create, { user: user }
-                 }.to raise_error
+        }.to raise_error
       end
     end
     #invalid:
