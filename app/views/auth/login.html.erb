@@ -6,7 +6,6 @@
 	</section>
 
 	<span class="login-form small-12 medium-6 large-6 columns">
-		<h2>Login</h2>
 		<% if flash[:alert] %>
 		  <h3 class="alert"> <%=flash[:alert] %> </h3>
 		<% end %>
@@ -21,11 +20,11 @@
 		  <%= f.submit "Log In" %>
 		<% end %>
 
-		<%= link_to "Create Account", new_user_path %>
+		<%= link_to "Create Account", new_user_path, :class => "button" %>
 
 
-		<%= link_to raw("<i class=\"fa fa-instagram\"></i> Login with Instagram"), '/auth/instagram' %>
-		<%= link_to raw("<i class=\"fa fa-twitter\"></i> Login with Twitter"), '/auth/twitter' %>
+		<%= link_to raw("<i class=\"fa fa-instagram\"></i> Login with Instagram"), '/auth/instagram', :class => "button" %>
+		<%= link_to raw("<i class=\"fa fa-twitter\"></i> Login with Twitter"), '/auth/twitter', :class => "button" %>
 
 	</span>
 </div>
