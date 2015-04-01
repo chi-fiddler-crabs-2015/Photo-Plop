@@ -9,6 +9,9 @@
     <%= f.label :description, "Describe Your Album" %>
     <%= f.text_area :description %>
 
+    <%= f.label :tag, "Is there a hashtag related to this album?" %>
+    <%= f.text_field :tag %>
+
     <label for="read_privilege">Who can view your album?</label>
     <%= f.radio_button :read_privilege, "1" %>
     <%= f.label :read_privilege, "Anyone" %>

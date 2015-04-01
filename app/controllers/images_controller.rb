@@ -45,6 +45,19 @@ class ImagesController < ApplicationController
     redirect_to album_path(params[:album_id])
   end
 
+def tags
+  puts params
+  client = Instagram.client(:access_token => ENV['IG_APP_SECRET'])
+  html = "<h1>Search for tags, get tag info and get media by tag</h1>"
+  tags = client.tag_search('cat')
+  html << "<h2>Tag Name = #{tags[0].name}. Media Count =  #{tags[0].media_count}. </h2><br/><br/>"
+  for media_item in client.tag_recent_media(tags[0].name)
+    html << "<img src='#{media_item.images.thumbnail.url}'>"
+  end
+  puts html
+end
+
+
   private
 
   def image_params
