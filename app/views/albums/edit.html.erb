@@ -1,0 +1,41 @@
+<div class="album_edit">
+  <%= form_for :album, method: :put, url: album_path(params[:id]) do |f| %>
+    <%= render "shared/errors" %>
+    <%= f.label :title %>
+    <%= f.text_field :title, :required => true, :class => "big-label" %>
+
+    <%= f.label :description, :class => "big-label" %>
+    <%= f.text_area :description %>
+
+
+    <%= f.radio_button :read_privilege, "1" %>
+    <%= f.label :read_privilege, "Anyone can see" %>
+
+    <%= f.radio_button :read_privilege, "2" %>
+    <%= f.label :read_privilege, "Need password to see" %>
+
+    <%= f.radio_button :write_privilege, "1" %>
+    <%= f.label :write_privilege, "Anyone can upload" %>
+
+    <%= f.radio_button :write_privilege, "2" %>
+    <%= f.label :write_privilege, "Need password to upload" %>
+    <%= f.label :password %>
+    <%= f.text_field :password, placeholder: "(Optional)" %>
+    <br />
+    <%= f.submit "Update" %>
+  <% end %>
+
+  <%= button_to "DELETE ALBUM", @album, method: :delete, data: { confirm: "Are you sure?" } %>
+
+
+  <ul class="clearing-thumbs small-block-grid-3 medium-block-grid-5 large-block-grid-6" data-clearing>
+    <% @album.images.each do |image| %>
+      <li class="img-tile">
+        <%= button_to "", {:controller => :images,
+        :action => 'destroy', album_id: @album.id, :id => image.id }, :class => "fa fa-trash-o",  :method => :delete, data: { confirm: "Are you sure?" } %>
+        <%= link_to image_tag(image.location, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb, :data => {:caption => "#{image.caption} (Uploaded by #{image.owner.username})"}), image.location %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
