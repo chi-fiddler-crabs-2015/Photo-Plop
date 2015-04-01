@@ -32,5 +32,5 @@
   <% end %>
   <%= button_to "Cancel", @album, method: :get %>
 
-  <%= button_to "Delete Album", @album, method: :delete %>
+  <%= button_to "Delete Album", @album, method: :delete, data: { confirm: "Are you sure?" } %>
 </div>
