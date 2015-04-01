@@ -41,8 +41,7 @@
 
   <div class="row" id="share-url-container" style="display: none;">
     Your album's URL is: <span><input type="text" value="<%= show_vanity_url(@album) %>" disabled></input></span>
-    <img src="http://media.idownloadblog.com/wp-content/uploads/2013/04/Twitter-2.2-Mac-app-icon-small.png">
-    <img src="http://www.waterproof-usa.com/_images/common/instagram.png">
+    <%= custom_tweet_button('Tweet This Album', {:text => "Plop to my album: #{@album.title}", url: "http://www.photoplop.herokuapp.com/#{@album.vanity_url}" }) %>
   </div>
 
   <div class="row"><div class="small-9 medium-6 large-4 columns" id="to_append_to">
