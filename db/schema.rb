@@ -76,19 +76,18 @@ ActiveRecord::Schema.define(version: 20150401020009) do
     t.integer  "owner_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "tag"
   end
 
   add_index "images", ["album_id"], name: "index_images_on_album_id", using: :btree
   add_index "images", ["owner_id"], name: "index_images_on_owner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",      null: false
-    t.string   "email",         null: false
-    t.string   "password_hash", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.boolean  "guest",   default: false
+    t.string   "username",                      null: false
+    t.string   "email",                         null: false
+    t.string   "password_hash",                 null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "guest",         default: false
   end
 
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
