@@ -4,7 +4,7 @@
 <div class="album_show">
   <div class="row">
 
-    <div id ="album-show-title" class="small-9 medium-10 large-10 columns">
+    <div id ="album-show-title" class="small-8 medium-10 large-10 columns">
       <h1><%= @album.title %></h1>
       <p>Description: <%= @album.description %></p>
       <p>Creator: <%= @album.creator.username %></p>
@@ -18,27 +18,32 @@
         <% end %>
     </div>
 
-    <div class="small-3 medium-2 large-2 columns four-buttons">
+    <div class="small-4 medium-2 large-2 columns four-buttons">
       <div class="row">
         <span id="upload-photo-box">
-          <%= link_to raw("<i class=\"fa fa-plus-square\"></i>"), new_album_image_path(@album.id), remote: true, id: "upload_button" %>
+          <%= link_to raw("<i class=\"fa fa-plus-square\"></i> Add"), new_album_image_path(@album.id), remote: true, id: "upload_button" %>
         </span>
+      </div>
 
+
+      <div class="row">
+        <a href='' id="share-button"><i class="fa fa-share-alt-square"></i> Share</a>
+      </div>
+
+      <div class="row">
+        <% if @album.owner?(current_user) %>
+          <%= link_to raw("<i class=\"fa fa-pencil-square\"></i> Edit"), edit_album_path(@album.id), id: "album-show-edit-button", remote: true %>
+        <% end %>
+      </div>
+
+      <div class="row">
         <span id="favorite-button-container">
           <% if current_user %>
             <%= render partial: "favorites/button"%>
           <% end %>
         </span>
       </div>
-
-      <div class="row">
-        <a href='' id="share-button"><i class="fa fa-share-alt-square"></i></a>
-
-        <% if @album.owner?(current_user) %>
-          <%= link_to raw("<i class=\"fa fa-pencil-square\"></i>"), edit_album_path(@album.id), id: "album-show-edit-button", remote: true %>
-        <% end %>
-      </div>
-
+      
     </div>
 
   </div>
