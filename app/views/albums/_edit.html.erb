@@ -8,6 +8,9 @@
     <%= f.label :description, :class => "big-label" %>
     <%= f.text_area :description %>
 
+    <%= f.label :tag, :class => "big-label" %>
+    <%= f.text_area :tag %>
+
       <label for="read_privilege", class="big-label">Who can view your album?</label>
         <%= f.radio_button :read_privilege, "1" %>
         <%= f.label :read_privilege, "Anyone" %>

@@ -17,6 +17,8 @@
 		  <%= f.submit "Upload" %>
 	<% end %>
 
-	<%= button_to "search instagram for tagged pics", search_path(@album.tag),  method: :get %>
+	<% if @album.tag %>
+		<%= button_to "Search Instagram for Images with Tag: #{@album.tag}", search_path(@album.tag),  method: :get %>
+	<% end %>
 		</fieldset>
 </div>
