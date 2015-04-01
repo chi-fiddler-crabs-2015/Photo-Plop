@@ -7,7 +7,7 @@
 	  <p>Build photo albums with your <%= group %>. </p>
 	</section>
 
-	<span class="login-form small-12 medium-6 large-6 columns">
+	<div class="row"><span class="small-12 medium-12 large-4 large-centered columns login-form ">
 		<% if flash[:alert] %>
 		  <h3 class="alert"> <%=flash[:alert] %> </h3>
 		<% end %>
@@ -28,5 +28,5 @@
 		<%= link_to raw("<i class=\"fa fa-instagram\"></i> Login with Instagram"), '/auth/instagram', :class => "button" %>
 		<%= link_to raw("<i class=\"fa fa-twitter\"></i> Login with Twitter"), '/auth/twitter', :class => "button" %>
 
-	</span>
+	</span></div>
 </div>
