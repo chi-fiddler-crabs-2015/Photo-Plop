@@ -1,21 +1,22 @@
-<% content_for :title, "Add from Instagram" %>
+<div class="insta-add">
+  <% content_for :title, "Add from Instagram" %>
 
 
-<ul class="clearing-thumbs small-block-grid-3 medium-block-grid-5 large-block-grid-6">
+  <ul class="clearing-thumbs small-block-grid-3 medium-block-grid-5 large-block-grid-8">
     <% @instaInfo[:ImgResults].each_with_index do | img, count | %>
       <li class="img-tile">
 
-      <%= form_for :image, id: "upload-form-instagram", mehtod: 'post', url: album_images_path(@instaInfo[:album].id) do |f| %>
 
-        <%= f.hidden_field :location, value: img  %>
+        <%= form_for :image, id: "upload-form-instagram", mehtod: 'post', url: album_images_path(@instaInfo[:album].id) do |f| %>
 
-        <%= f.label :caption %>
-        <%= f.text_field :caption %>
+          <%= f.hidden_field :location, value: img  %>
 
-      <%= f.submit "+" %>
-  <% end %>
-        <%= link_to image_tag(img, :type => "fetch", :width => 200, :height=> 200, :crop => :thumb, :data => {:caption => "#{@instaInfo[:TagName]}  #{count +1}"}) %>
+          <%= f.submit "+" %>
+        <% end %>
+
+        <%= image_tag(img, :type => "fetch", :width => 200, :height=> 200, :data => {:caption => "#{@instaInfo[:TagName]}  #{count +1}"}) %>
 
       </li>
-    <% end %>
+      <% end %>
   </ul>
+</div>
