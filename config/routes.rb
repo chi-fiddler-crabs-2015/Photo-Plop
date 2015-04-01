@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :collaborators_albums
   resources :favorites
+  get '/search/:tag' => 'images#tags', as: :search
 
   get'/:vanity_url' => 'albums#vanity', as: :vanity
   # Example of regular route:

@@ -45,4 +45,26 @@ class ImagesController < ApplicationController
     redirect_to album_path(params[:album_id])
   end
 
+  def tags
+    client = Instagram.client(:access_token => ENV['IG_ACCESS_TOKEN'])
+    @instaInfo = Hash[]
+    puts tags = client.tag_search(params[:tag])
+    @instaInfo[:album] = Album.find_by(tag: params[:tag])
+    @instaInfo[:TagName] = tags[0].name
+    @instaInfo[:PicCount] = tags[0].media_count
+
+    puts client.tag_recent_media(tags[0].name)
+    @instaInfo[:ImgResults] = []
+    for media_item in client.tag_recent_media(tags[0].name)
+      @instaInfo[:ImgResults] << media_item.images.standard_resolution.url
+    end
+    @instaInfo
+  end
+
+  private
+
+  def image_params
+    params.require(:image).permit(:caption )
+  end
+
 end
