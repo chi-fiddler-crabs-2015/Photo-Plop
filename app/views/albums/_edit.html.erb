@@ -1,33 +1,33 @@
-<%= form_for :album, method: :put, html: {id: "update-album-form"}, remote: true,  url: album_path(params[:id]) do |f| %>
-  <%= render "shared/errors" %>
-  <%= f.label :title %>
-  <%= f.text_field :title, :required => true %>
+<div class="album_edit">
+  <%= form_for :album, method: :put, html: {id: "update-album-form"}, remote: true,  url: album_path(params[:id]) do |f| %>
+    <%= render "shared/errors" %>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %>
+    <%= f.label :title, :class => "big-label" %>
+    <%= f.text_field :title, :required => true %>
 
-  <p>Creator: <input type="text" disabled value="<%= @album.creator.username %>"</input></p>
+    <%= f.label :description, :class => "big-label" %>
+    <%= f.text_area :description %>
 
-    <label for="read_privilege">Who can view your album?</label>
-      <%= f.radio_button :read_privilege, "1" %>
-      <%= f.label :read_privilege, "Anyone" %>
+      <label for="read_privilege", class="big-label">Who can view your album?</label>
+        <%= f.radio_button :read_privilege, "1" %>
+        <%= f.label :read_privilege, "Anyone" %>
 
-      <%= f.radio_button :read_privilege, "2" %>
-      <%= f.label :read_privilege, "Anyone with the password" %>
+        <%= f.radio_button :read_privilege, "2" %>
+        <%= f.label :read_privilege, "Anyone with the password" %>
 
-    <label for="write privilege">Who can add images to your album?</label>
-      <%= f.radio_button :write_privilege, "1" %>
-      <%= f.label :write_privilege, "Anyone" %>
+      <label for="write privilege", class="big-label">Who can add images to your album?</label>
+        <%= f.radio_button :write_privilege, "1" %>
+        <%= f.label :write_privilege, "Anyone" %>
 
-      <%= f.radio_button :write_privilege, "2" %>
-      <%= f.label :write_privilege, "Anyone with the password" %>
+        <%= f.radio_button :write_privilege, "2" %>
+        <%= f.label :write_privilege, "Anyone with the password" %>
 
-    <%= f.label :password %>
-    <%= f.text_field :password %>
+      <%= f.label :password, :class => "big-label" %>
+      <%= f.text_field :password %>
 
-    <%= f.submit "Update" %>
-<% end %>
-<%= button_to "CANCEL", @album, method: :get %>
+      <%= f.submit "Save Changes" %>
+  <% end %>
+  <%= button_to "Cancel", @album, method: :get %>
 
-<%= button_to "DELETE ALBUM", @album, method: :delete %>
-
+  <%= button_to "Delete Album", @album, method: :delete %>
+</div>
