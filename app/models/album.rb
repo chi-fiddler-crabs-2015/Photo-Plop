@@ -52,16 +52,4 @@ class Album < ActiveRecord::Base
     end
   end
 
-
-  # def self.on_change
-  #   Album.connection.execute "LISTEN albums"
-  #   loop do
-  #     Album.connection.raw_connection.wait_for_notify do |event, pid, album|
-  #       yield album
-  #     end
-  #   end
-  # ensure
-  #   Album.connection.execute "UNLISTEN albums"
-  # end
-
 end
