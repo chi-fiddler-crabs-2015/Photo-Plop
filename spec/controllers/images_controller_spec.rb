@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ImagesController, type: :controller do
   let(:user) { create(:user) }
-  let(:album) { create(:album, creator: user, vanity_url: 'asldkfj234') }
+  let(:album) { create(:album, creator: user, vanity_url: 'asldkfj234', tag: 'tag') }
   let(:image) { create(:image, owner: user, album: album) }
   before do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
