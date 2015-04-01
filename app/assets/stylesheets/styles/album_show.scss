@@ -48,8 +48,16 @@
     form {
       position: absolute;
 
-      input[type="submit"] {
-        color: red;
+      .button {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 0.5em;
+        border: none;
+
+      }
+
+      .button:hover {
+        color: $med-blue;
       }
     }
   }
