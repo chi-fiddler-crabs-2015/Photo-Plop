@@ -6,7 +6,10 @@ class User < ActiveRecord::Base
   has_many :identities
 
   validates :email, :password_hash, presence: true
-  validates :email, :username, uniqueness: { case_sensitive: true }
+  validates :email, :username, uniqueness: { case_sensitive: false }
+
+  before_save { |user| user.email = email.downcase }
+  before_save { |user| user.username = name.downcase }
 
   def password
     @password ||= BCrypt::Password.new(self.password_hash)
@@ -18,7 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(user)
-    @_user = User.find_by(username: user[:username])
+    @_user = User.find_by(username: user[:username].downcase)
     @_user if @_user && @_user.password == user[:password]
   end
 
