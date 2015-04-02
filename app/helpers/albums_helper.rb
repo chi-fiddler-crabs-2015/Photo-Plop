@@ -8,6 +8,6 @@ module AlbumsHelper
   end
 
   def mega_album
-    @_mega_album ||= Album.find_by(title: "Mega Album".downcase)
+    @_mega_album ||= Album.find_by(title: "MEGA Album")
   end
 end
