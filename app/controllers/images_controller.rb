@@ -2,6 +2,7 @@ class ImagesController < ApplicationController
   # include ActionController::Live
 
   def new
+    @user = current_user || User.new_guest
     @image = Image.new
     @album = Album.find_by(id: params[:album_id])
     if @album.write_authenticate(current_user)
