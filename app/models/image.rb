@@ -12,6 +12,9 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def contributor
+    self.owner ? self.owner.username : "Guest"
+  end
 
   # validates :file_url, presence: true
   # after_create :notify_album

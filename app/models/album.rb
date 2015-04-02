@@ -40,7 +40,7 @@ class Album < ActiveRecord::Base
     end
   end
 
-  def write_authenticate(user, password='')
+  def write_authenticate(user='', password='')
     album_user = AlbumsUser.find_or_create_by(user: user, album: self)
     if album_user.write_privilege >= self.write_privilege
       return true
