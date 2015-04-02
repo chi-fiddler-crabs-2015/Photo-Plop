@@ -2,9 +2,11 @@
 <p>Description: <%= @album.description %></p>
 <p>Creator: <%= @album.creator.username %></p>
 <p>Album Tag:
-        <% if @album.tag %>
-          #<%= @album.tag %>
-        <% else %>
-          (none)
-        <% end %>
+  <% if @album.tag.nil? %>
+  	(none)
+  <% elsif @album.tag.length == 0 %>
+  	(none)
+  <% else %>
+    #<%= @album.tag %>
+  <% end %>
 </p>

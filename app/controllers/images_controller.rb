@@ -12,8 +12,8 @@ class ImagesController < ApplicationController
   end
 
   def auth
-    album = Album.find_by(id: params[:album_id])
-    if album.write_authenticate(current_user, params[:album][:password])
+    @album = Album.find_by(id: params[:album_id])
+    if @album.write_authenticate(current_user, params[:album][:password])
       render partial: 'new'
     else
       @errors = "You entered an incorrect password"
