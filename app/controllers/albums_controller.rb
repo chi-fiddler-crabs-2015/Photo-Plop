@@ -46,7 +46,7 @@ class AlbumsController < ApplicationController
   end
 
   def vanity
-    @album = Album.find_by(vanity_url: params[:vanity_url])
+    @album = Album.find_by(vanity_url: params[:vanity_url].downcase)
     if @album
       redirect_to album_path(@album)
     else

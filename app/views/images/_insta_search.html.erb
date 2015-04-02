@@ -1,0 +1,15 @@
+<script>
+console.log("Hello there")
+  $(document).on('submit', "#submitter", function(e) {
+    debugger
+    e.preventDefault();
+    var userInput = $('#userInput')
+    console.log(userInput)
+  })
+</script>
+
+<input type="text" id="userInput">give me input</input>
+<button id="submitter">Submit</button>
+
+
+<%= button_to "Search Instagram for Images with Tag: #{@album.tag}", search_path(@album.tag),  method: :get %>
