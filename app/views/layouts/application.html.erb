@@ -35,7 +35,7 @@
       <% if current_user %>
         <li><%= link_to 'New Album', new_album_path %></li>
         <li><%= link_to 'My Albums', albums_path %></li>
-        <li><%= link_to 'Random Public Album', album_path(random_public_album) %></li>
+        <li><%= link_to 'Random Album', album_path(random_public_album) %></li>
         <li><%= link_to "Logout", logout_path %></li>
 
       <% else %>
