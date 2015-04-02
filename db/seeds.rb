@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+admin = User.create!(username:"teamPhotoplop", email: "photoplop@gmail.com", password:"caballo")
+mega_album = Album.create!(title: "MEGA Album", creator: admin, vanity_url:"MEGA-album", tag: "photoplop")
