@@ -31,18 +31,19 @@
       </div>
 
       <div class="row">
-        <% if @album.owner?(current_user) %>
-          <%= link_to raw("<i class=\"fa fa-pencil-square\"></i> Edit"), edit_album_path(@album.id), id: "album-show-edit-button", remote: true %>
-        <% end %>
-      </div>
-
-      <div class="row">
         <span id="favorite-button-container">
           <% if current_user %>
             <%= render partial: "favorites/button"%>
           <% end %>
         </span>
       </div>
+      
+      <div class="row">
+        <% if @album.owner?(current_user) %>
+          <%= link_to raw("<i class=\"fa fa-pencil-square\"></i> Edit"), edit_album_path(@album.id), id: "album-show-edit-button", remote: true %>
+        <% end %>
+      </div>
+
 
     </div>
 
