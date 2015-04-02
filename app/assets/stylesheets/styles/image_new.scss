@@ -4,7 +4,7 @@
 		border-color: $dark-purple;
 
 		label {
-			color: black;
+			color: $white;
 		}
 	}
 
@@ -13,10 +13,6 @@
 		background-color: $dark-purple;
 	}
 
-	input[type="submit"]:hover {
-		color: $light-purple;
-		background-color: $med-blue;
-	}
 
 	input[type="submit"] {
 		color: $light-purple;
@@ -25,5 +21,10 @@
 		border: none;
 		margin-bottom: 0.5em;
 
+	}
+
+	input[type="submit"]:hover {
+		color: $light-purple;
+		background-color: $med-blue;
 	}
 }

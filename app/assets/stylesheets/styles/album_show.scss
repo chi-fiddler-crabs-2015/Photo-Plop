@@ -2,7 +2,7 @@
   background-color: $gray;
   font-family: $body-font;
   min-height: 60em;
-  color: $gray;
+  color: $white;
 
   .four-buttons {
     font-size: 0.7em;
@@ -44,7 +44,7 @@
 
   #share-url-container {
     label {
-      color: black;
+      color: $white;
       font-size: 1em;
     }
 

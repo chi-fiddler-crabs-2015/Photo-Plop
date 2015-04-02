@@ -1,20 +1,16 @@
 .user_new {
-	background-color: $gray;
+	background-color: $med-purple;
   min-height: 60em;
 
   h2 {
-		color: $light-purple;
+		color: $dark-purple;
 		margin-top: 0;
 	}
 
 	label {
-  		color: black;
+  		color: $white;
+  		font-size: 1.3em;
   	}
-
-  input[type="submit"]:hover {
-		color: $dark-purple;
-		background-color: $light-purple;
-	}
 
 	input[type="submit"] {
 		color: $light-purple;
@@ -25,6 +21,12 @@
 		border: none;
 	}
 
+  input[type="submit"]:hover {
+		color: $light-purple;
+		background-color: $med-blue;
+	}
+
+
 	a {
 		color: $light-purple;
 		background-color: $dark-purple;
@@ -34,7 +36,7 @@
 	}
 
 	a:hover {
-		color: $dark-purple;
-		background-color: $light-purple;
+		color: $light-purple;
+		background-color: $med-blue;
 	}
 }
