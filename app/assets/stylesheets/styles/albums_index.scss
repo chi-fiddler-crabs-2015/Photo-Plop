@@ -18,7 +18,17 @@
 
   p {
     padding-left: 2em;
+    padding-right: 2em;
     padding-top: 0.5em;
+    color: $med-purple;
+
+    a {
+      color: $dark-purple;
+    }
+
+    a:hover {
+      color: $med-blue;
+    }
   }
 }
 

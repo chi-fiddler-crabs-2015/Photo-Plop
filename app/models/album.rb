@@ -8,12 +8,13 @@ class Album < ActiveRecord::Base
   has_many :favorites, :dependent => :destroy
 
   validates :title, :creator, presence: true
-  validates :vanity_url, uniqueness: true
+  validates :vanity_url, uniqueness: { case_sensitive: false }
   validates :read_privilege, presence: true
   validates :write_privilege, presence: true
   validates_length_of :title, :maximum => 75
 
   validates_length_of :password, :maximum => 20
+  before_save { |album| album.vanity_url = vanity_url.downcase }
 
 
   def assign_vanity_url
@@ -40,7 +41,7 @@ class Album < ActiveRecord::Base
     end
   end
 
-  def write_authenticate(user, password='')
+  def write_authenticate(user='', password='')
     album_user = AlbumsUser.find_or_create_by(user: user, album: self)
     if album_user.write_privilege >= self.write_privilege
       return true

@@ -1,0 +1,37 @@
+.about {
+	background-color: $light-purple;
+  min-height: 60em;
+  padding-left: 1em;
+  padding-right: 1em;
+  color: $gray;
+
+  .about_blurb {
+  	text-align: center;
+  	h3 {
+  		color: $dark-purple;
+  		margin-top: -1em;
+  	}
+  	p {
+  		color: black;
+  		font-size: 1em;
+  	}
+  }
+
+  h3 {
+  	color: $dark-purple;
+  }
+
+  a {
+  	color: $dark-purple;
+  }
+
+  a:hover {
+  	color: $med-blue;
+  }
+
+  h2 {
+  	font-size: 1em;
+  	color: $gray;
+  }
+
+}
