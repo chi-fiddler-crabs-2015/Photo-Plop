@@ -19,15 +19,15 @@
       <%= f.radio_button :read_privilege, "1" %>
       <%= f.label :read_privilege, "Anyone" %>
 
-      <%= f.radio_button :read_privilege, "2" %>
-      <%= f.label :read_privilege, "Anyone with the password" %>
+      <span class="long-label"><%= f.radio_button :read_privilege, "2" %>
+        <%= f.label :read_privilege, "Anyone with the password" %></span>
 
       <label for="write privilege" class="big-label">Who can add images to your album?</label>
       <%= f.radio_button :write_privilege, "1" %>
       <%= f.label :write_privilege, "Anyone" %>
 
-      <%= f.radio_button :write_privilege, "2" %>
-      <%= f.label :write_privilege, "Anyone with the password" %>
+      <span class="long-label"><%= f.radio_button :write_privilege, "2" %>
+        <%= f.label :write_privilege, "Anyone with the password" %></span>
 
       <%= f.label :password, :class => "big-label"  %>
       <%= f.text_field :password %>

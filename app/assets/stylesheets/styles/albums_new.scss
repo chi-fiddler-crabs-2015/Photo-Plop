@@ -24,6 +24,10 @@
 
 	}
 
+	.long-label {
+		white-space: nowrap;
+	}
+
 	input[type="submit"] {
 		color: $dark-purple;
 		background-color: $light-purple;
