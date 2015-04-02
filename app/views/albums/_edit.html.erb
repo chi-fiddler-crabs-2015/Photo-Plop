@@ -9,7 +9,14 @@
     <%= f.text_area :description %>
 
     <%= f.label :tag, "What Instagram tag would you like to plop photos from? (optional)", :class => "big-label" %>
-    <%= f.text_area :tag %>
+    <div class="row collapse">
+      <div class="small-2 large-1 columns">
+        <span class="prefix">#</span>
+      </div>
+      <div class="small-10 large-11 columns">
+        <%= f.text_field :tag %>
+      </div>
+    </div>
 
     <%= f.label :vanity_url, :class => "big-label" %>
     <%= f.text_field :vanity_url, :required => true %>

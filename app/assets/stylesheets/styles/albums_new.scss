@@ -2,6 +2,7 @@
 	background-color: $gray;
   font-family: $body-font;
   min-height: 60em;
+  background-color: $light-purple;
 
 	h2 {
     font-size: 2em;
@@ -24,14 +25,20 @@
 
 	}
 
+	.long-label {
+		white-space: nowrap;
+	}
+
 	input[type="submit"] {
-		color: $dark-purple;
-		background-color: $light-purple;
+		color: $light-purple;
+		background-color: $dark-purple;
 		font-size: 1em;
+		border: none;
+		padding: 1em;
 	}
 
 	input[type="submit"]:hover {
 		color: $light-purple;
-		background-color: $dark-purple;
+		background-color: $med-blue;
 	}
 }

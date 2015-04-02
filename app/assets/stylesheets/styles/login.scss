@@ -1,12 +1,16 @@
 .login {
-	background-color: $gray;
+	background-color: $light-purple;
   min-height: 60em;
 
   .intro_blurb {
   	text-align: center;
   	h3 {
-  		color: $light-purple;
+  		color: $dark-purple;
   		margin-top: -1em;
+  	}
+  	p {
+  		color: black;
+  		font-size: 1em;
   	}
   }
 
@@ -17,13 +21,9 @@
 
   	label {
   		color: black;
+  		font-size: 1.3em;
   	}
   }
-
-  input[type="submit"]:hover {
-		color: $dark-purple;
-		background-color: $light-purple;
-	}
 
 	input[type="submit"] {
 		color: $light-purple;
@@ -33,6 +33,12 @@
 		margin-bottom: 1em;
 		border: none;
 	}
+	
+  input[type="submit"]:hover {
+		color: $light-purple;
+		background-color: $med-blue;
+	}
+
 
 	a {
 		color: $light-purple;
@@ -43,7 +49,7 @@
 	}
 
 	a:hover {
-		color: $dark-purple;
-		background-color: $light-purple;
+		color: $light-purple;
+		background-color: $med-blue;
 	}
 }
