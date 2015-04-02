@@ -8,6 +8,8 @@
 
 		  <%= f.file_field(:image_url) %>
 
+		  <p>- OR -</p>
+
 		  <label for="direct_url">Image Url</label>
 		  <input type="text" name="image[direct_url]" id="direct_url">
 
@@ -16,7 +18,7 @@
 
 		  <%= f.submit "Upload" %>
 	<% end %>
-
+		  <p>- OR -</p>
 <% unless @album.tag.nil? %>
 		<% if @album.tag.length > 0 %>
 			<%= button_to "Search Instagram for Images with Tag: #{@album.tag}", search_path(@album.tag),  method: :get %>

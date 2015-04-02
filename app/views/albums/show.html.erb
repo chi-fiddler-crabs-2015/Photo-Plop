@@ -51,7 +51,7 @@
   <div class="row">
     <div class="small-9 medium-10 large-10 columns" id="share-url-container" style="display: none;">
       <label>Your album's URL is:</label> <input type="text" value="<%= show_vanity_url(@album) %>" disabled></input>
-      <%= custom_tweet_button("<i class=\"fa fa-twitter\"></i> Tweet This Album".html_safe, {:text => "Plop to my album: #{@album.title}", url: "http://www.photoplop.herokuapp.com/#{@album.vanity_url}" }) %>
+      <%= custom_tweet_button("<i class=\"fa fa-twitter\"></i> Tweet This Album".html_safe, {:text => "Plop a photo to this album: #{@album.title}", url: "http://photoplop.herokuapp.com/#{@album.vanity_url}" }) %>
     </div>
   </div>
 
