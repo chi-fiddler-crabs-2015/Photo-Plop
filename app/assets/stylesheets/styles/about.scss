@@ -3,7 +3,7 @@
   min-height: 60em;
   padding-left: 1em;
   padding-right: 1em;
-  color: $gray;
+  color: $white;
 
   .about_blurb {
   	text-align: center;
@@ -12,7 +12,7 @@
   		margin-top: -1em;
   	}
   	p {
-  		color: black;
+  		color: $white;
   		font-size: 1em;
   	}
   }
@@ -31,7 +31,7 @@
 
   h2 {
   	font-size: 1em;
-  	color: $gray;
+  	color: $dark-purple;
   }
 
 }
