@@ -1,4 +1,4 @@
-# Photo-Plop   [![Build Status](https://travis-ci.org/chi-fiddler-crabs-2015/Photo-Plop.svg?branch=master)](https://travis-ci.org/chi-fiddler-crabs-2015/Photo-Plop) [![Coverage Status](https://coveralls.io/repos/chi-fiddler-crabs-2015/Photo-Plop/badge.svg?branch=master)](https://coveralls.io/r/chi-fiddler-crabs-2015/Photo-Plop?branch=master)
+# Photo-Plop   [![Build Status](https://travis-ci.org/chi-fiddler-crabs-2015/Photo-Plop.svg?branch=master)](https://travis-ci.org/chi-fiddler-crabs-2015/Photo-Plop) [![Coverage Status](https://coveralls.io/builds/2254264/badge)](https://coveralls.io/builds/2254264)
 the NEW photoplop!
 
 - Snap it
