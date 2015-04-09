@@ -8,6 +8,8 @@ An 8-day project through Dev Bootcamp.
 
 Team Photoplop:
 
-Kara Carrell
-Stephanie Marx
-Ty Kowalewski
+- Kara Carrell
+- Stephanie Marx
+- Ty Kowalewski
+
+[View photoplop live!](http://photoplop.herokuapp.com)
